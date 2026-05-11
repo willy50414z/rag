@@ -1,0 +1,4 @@
+managed_by = "agent-env"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+developer_instructions = "At session start, read C:/Users/willy/.agent-env/knowledge-base/agent_cli_file/catalogue.md to load shared rules and skills."

@@ -1,0 +1,25 @@
+source_file: "<pdf path>"
+document_type_guess: "digital-text"
+backend_path: "<selected backend route>"
+
+fields:
+  - name: "<field_name>"
+    description: "<field description>"
+    policy_status: "provisional"
+    required: true
+    on_missing: "error"
+    strict_extraction: true
+    validation_description: "<natural-language validation guidance>"
+    candidate_priority_note: "<selection note>"
+    selected_candidate:
+      value: "<value>"
+      page_number: 1
+      source_blocks:
+        - "p1_b1"
+      evidence: "<supporting text>"
+      confidence: 0.0
+
+unresolved:
+  - field_name: "<field_name>"
+    issue: "<ambiguity description>"
+    action_needed: "<what user must clarify>"

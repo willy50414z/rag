@@ -1,0 +1,2877 @@
+[
+  {
+    "page_number": 1,
+    "blocks": [
+      {
+        "block_id": "p1_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p1_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p1_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p1_l3",
+        "block_type": "text",
+        "text": "65V/75A N-Channel Advanced Power MOSFET",
+        "line_number": 3
+      },
+      {
+        "block_id": "p1_l4",
+        "block_type": "text",
+        "text": "PRODUCT SUMMARY",
+        "line_number": 4
+      },
+      {
+        "block_id": "p1_l5",
+        "block_type": "text",
+        "text": "V I R mΩ Max",
+        "line_number": 5
+      },
+      {
+        "block_id": "p1_l6",
+        "block_type": "text",
+        "text": "DS D DS(on)",
+        "line_number": 6
+      },
+      {
+        "block_id": "p1_l7",
+        "block_type": "text",
+        "text": "6 @I =40A, V =10V",
+        "line_number": 7
+      },
+      {
+        "block_id": "p1_l8",
+        "block_type": "text",
+        "text": "D GS",
+        "line_number": 8
+      },
+      {
+        "block_id": "p1_l9",
+        "block_type": "text",
+        "text": "65V 75A",
+        "line_number": 9
+      },
+      {
+        "block_id": "p1_l10",
+        "block_type": "text",
+        "text": "10 @I =20A, V =4.5V",
+        "line_number": 10
+      },
+      {
+        "block_id": "p1_l11",
+        "block_type": "text",
+        "text": "D GS",
+        "line_number": 11
+      },
+      {
+        "block_id": "p1_l12",
+        "block_type": "text",
+        "text": "Features",
+        "line_number": 12
+      },
+      {
+        "block_id": "p1_l13",
+        "block_type": "text",
+        "text": "• Enhancement mode",
+        "line_number": 13
+      },
+      {
+        "block_id": "p1_l14",
+        "block_type": "text",
+        "text": "• Low on-resistance R @ V =4.5 V",
+        "line_number": 14
+      },
+      {
+        "block_id": "p1_l15",
+        "block_type": "text",
+        "text": "• New SGT-MOS Technology",
+        "line_number": 15
+      },
+      {
+        "block_id": "p1_l16",
+        "block_type": "text",
+        "text": "• 100% Avalanche test",
+        "line_number": 16
+      },
+      {
+        "block_id": "p1_l17",
+        "block_type": "text",
+        "text": "• Pb-free lead plating; RoHS compliant",
+        "line_number": 17
+      },
+      {
+        "block_id": "p1_l18",
+        "block_type": "text",
+        "text": "Absolute Maximum Ratings",
+        "line_number": 18
+      },
+      {
+        "block_id": "p1_l19",
+        "block_type": "text",
+        "text": "(TA=25℃, unless otherwise noted)",
+        "line_number": 19
+      },
+      {
+        "block_id": "p1_l20",
+        "block_type": "text",
+        "text": "Symbol Parameter Rating Unit",
+        "line_number": 20
+      },
+      {
+        "block_id": "p1_l21",
+        "block_type": "text",
+        "text": "V Drain-source voltage 65 V",
+        "line_number": 21
+      },
+      {
+        "block_id": "p1_l22",
+        "block_type": "text",
+        "text": "DS",
+        "line_number": 22
+      },
+      {
+        "block_id": "p1_l23",
+        "block_type": "text",
+        "text": "V Gate-source voltage ±20 V",
+        "line_number": 23
+      },
+      {
+        "block_id": "p1_l24",
+        "block_type": "text",
+        "text": "GS",
+        "line_number": 24
+      },
+      {
+        "block_id": "p1_l25",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 25
+      },
+      {
+        "block_id": "p1_l26",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 26
+      },
+      {
+        "block_id": "p1_l27",
+        "block_type": "text",
+        "text": "Diode continuous forward current TC=25°C 75 A",
+        "line_number": 27
+      },
+      {
+        "block_id": "p1_l28",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 28
+      },
+      {
+        "block_id": "p1_l29",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 29
+      },
+      {
+        "block_id": "p1_l30",
+        "block_type": "text",
+        "text": "Continuous drain current @VGS=10V TC=25°C 75 A",
+        "line_number": 30
+      },
+      {
+        "block_id": "p1_l31",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 31
+      },
+      {
+        "block_id": "p1_l32",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 32
+      },
+      {
+        "block_id": "p1_l33",
+        "block_type": "text",
+        "text": "Continuous drain current @VGS=10V TC=100°C 48 A",
+        "line_number": 33
+      },
+      {
+        "block_id": "p1_l34",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 34
+      },
+      {
+        "block_id": "p1_l35",
+        "block_type": "text",
+        "text": "DM",
+        "line_number": 35
+      },
+      {
+        "block_id": "p1_l36",
+        "block_type": "text",
+        "text": "Pulse drain current tested ① TC=25°C 300 A",
+        "line_number": 36
+      },
+      {
+        "block_id": "p1_l37",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 37
+      },
+      {
+        "block_id": "p1_l38",
+        "block_type": "text",
+        "text": "DSM",
+        "line_number": 38
+      },
+      {
+        "block_id": "p1_l39",
+        "block_type": "text",
+        "text": "Continuous drain current @VGS=10V 23 A",
+        "line_number": 39
+      },
+      {
+        "block_id": "p1_l40",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 40
+      },
+      {
+        "block_id": "p1_l41",
+        "block_type": "text",
+        "text": "DSM",
+        "line_number": 41
+      },
+      {
+        "block_id": "p1_l42",
+        "block_type": "text",
+        "text": "Continuous drain current @VGS=10V TA=70°C 18 A",
+        "line_number": 42
+      },
+      {
+        "block_id": "p1_l43",
+        "block_type": "text",
+        "text": "E Maximum avalanche energy, single pulsed ③ 25 mJ",
+        "line_number": 43
+      },
+      {
+        "block_id": "p1_l44",
+        "block_type": "text",
+        "text": "AS",
+        "line_number": 44
+      },
+      {
+        "block_id": "p1_l45",
+        "block_type": "text",
+        "text": "P",
+        "line_number": 45
+      },
+      {
+        "block_id": "p1_l46",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 46
+      },
+      {
+        "block_id": "p1_l47",
+        "block_type": "text",
+        "text": "Maximum power dissipation TC=25°C 45 W",
+        "line_number": 47
+      },
+      {
+        "block_id": "p1_l48",
+        "block_type": "text",
+        "text": "P Maximum power dissipation ② 4.2 W",
+        "line_number": 48
+      },
+      {
+        "block_id": "p1_l49",
+        "block_type": "text",
+        "text": "DSM",
+        "line_number": 49
+      },
+      {
+        "block_id": "p1_l50",
+        "block_type": "text",
+        "text": "T,T Operating junction and storage temperature range -55 to 150 °C",
+        "line_number": 50
+      },
+      {
+        "block_id": "p1_l51",
+        "block_type": "text",
+        "text": "j stg",
+        "line_number": 51
+      },
+      {
+        "block_id": "p1_l52",
+        "block_type": "text",
+        "text": "Page 1 of 7",
+        "line_number": 52
+      },
+      {
+        "block_id": "p1_l53",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 53
+      }
+    ],
+    "tables": [
+      {
+        "table_id": "p1_t0",
+        "rows": [
+          [
+            "PRODUCT SUMMARY",
+            null,
+            null
+          ],
+          [
+            "V\nDS",
+            "I\nD",
+            "R mΩ Max\nDS(on)"
+          ],
+          [
+            "65V",
+            "75A",
+            "6 @I =40A, V =10V\nD GS"
+          ],
+          [
+            null,
+            null,
+            "10 @I =20A, V =4.5V\nD GS"
+          ]
+        ]
+      },
+      {
+        "table_id": "p1_t1",
+        "rows": [
+          [
+            "Symbol",
+            "Parameter",
+            null,
+            "Rating",
+            "Unit"
+          ],
+          [
+            "V\nDS",
+            "Drain-source voltage",
+            null,
+            "65",
+            "V"
+          ],
+          [
+            "V\nGS",
+            "Gate-source voltage",
+            null,
+            "±20",
+            "V"
+          ],
+          [
+            "I\nS",
+            "Diode continuous forward current",
+            "TC=25°C",
+            "75",
+            "A"
+          ],
+          [
+            "I\nD",
+            "Continuous drain current @VGS=10V",
+            "TC=25°C",
+            "75",
+            "A"
+          ],
+          [
+            "I\nD",
+            "Continuous drain current @VGS=10V",
+            "TC=100°C",
+            "48",
+            "A"
+          ],
+          [
+            "I\nDM",
+            "Pulse drain current tested ①",
+            "TC=25°C",
+            "300",
+            "A"
+          ],
+          [
+            "I\nDSM",
+            "Continuous drain current @VGS=10V",
+            null,
+            "23",
+            "A"
+          ],
+          [
+            "I\nDSM",
+            "Continuous drain current @VGS=10V",
+            "TA=70°C",
+            "18",
+            "A"
+          ],
+          [
+            "E\nAS",
+            "Maximum avalanche energy, single pulsed ③",
+            null,
+            "25",
+            "mJ"
+          ],
+          [
+            "P\nD",
+            "Maximum power dissipation",
+            "TC=25°C",
+            "45",
+            "W"
+          ],
+          [
+            "P\nDSM",
+            "Maximum power dissipation ②",
+            null,
+            "4.2",
+            "W"
+          ],
+          [
+            "T,T\nj stg",
+            "Operating junction and storage temperature range",
+            null,
+            "-55 to 150",
+            "°C"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "page_number": 2,
+    "blocks": [
+      {
+        "block_id": "p2_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p2_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p2_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p2_l3",
+        "block_type": "text",
+        "text": "Thermal Characteristics",
+        "line_number": 3
+      },
+      {
+        "block_id": "p2_l4",
+        "block_type": "text",
+        "text": "Symbol Parameter Typ Max Unit",
+        "line_number": 4
+      },
+      {
+        "block_id": "p2_l5",
+        "block_type": "text",
+        "text": "Electrical Characteristics",
+        "line_number": 5
+      },
+      {
+        "block_id": "p2_l6",
+        "block_type": "text",
+        "text": "(TA=25℃, unless otherwise noted)",
+        "line_number": 6
+      },
+      {
+        "block_id": "p2_l7",
+        "block_type": "text",
+        "text": "Symbol Parameter Condition Min. Typ. Max. Unit",
+        "line_number": 7
+      },
+      {
+        "block_id": "p2_l8",
+        "block_type": "text",
+        "text": "Static Electrical Characteristics (unless otherwise stated) @ Tj=25°C",
+        "line_number": 8
+      },
+      {
+        "block_id": "p2_l9",
+        "block_type": "text",
+        "text": "BV",
+        "line_number": 9
+      },
+      {
+        "block_id": "p2_l10",
+        "block_type": "text",
+        "text": "DSS",
+        "line_number": 10
+      },
+      {
+        "block_id": "p2_l11",
+        "block_type": "text",
+        "text": "Drain-source breakdown voltage ID=250μA, VGS=0V 65 V",
+        "line_number": 11
+      },
+      {
+        "block_id": "p2_l12",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 12
+      },
+      {
+        "block_id": "p2_l13",
+        "block_type": "text",
+        "text": "DSS",
+        "line_number": 13
+      },
+      {
+        "block_id": "p2_l14",
+        "block_type": "text",
+        "text": "Zero gate voltage drain current VDS=60V, VGS=0V 1 μA",
+        "line_number": 14
+      },
+      {
+        "block_id": "p2_l15",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 15
+      },
+      {
+        "block_id": "p2_l16",
+        "block_type": "text",
+        "text": "DSS",
+        "line_number": 16
+      },
+      {
+        "block_id": "p2_l17",
+        "block_type": "text",
+        "text": "Zero gate voltage drain current VDS=60V, VGS=0V 100 μA",
+        "line_number": 17
+      },
+      {
+        "block_id": "p2_l18",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 18
+      },
+      {
+        "block_id": "p2_l19",
+        "block_type": "text",
+        "text": "DSS",
+        "line_number": 19
+      },
+      {
+        "block_id": "p2_l20",
+        "block_type": "text",
+        "text": "Zero gate voltage drain current VDS=60V, VGS=0V 100 μA",
+        "line_number": 20
+      },
+      {
+        "block_id": "p2_l21",
+        "block_type": "text",
+        "text": "I",
+        "line_number": 21
+      },
+      {
+        "block_id": "p2_l22",
+        "block_type": "text",
+        "text": "GSS",
+        "line_number": 22
+      },
+      {
+        "block_id": "p2_l23",
+        "block_type": "text",
+        "text": "Gate-body leakage current VDS=0V, VGS=±20V ±100 nA",
+        "line_number": 23
+      },
+      {
+        "block_id": "p2_l24",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 24
+      },
+      {
+        "block_id": "p2_l25",
+        "block_type": "text",
+        "text": "GS(th)",
+        "line_number": 25
+      },
+      {
+        "block_id": "p2_l26",
+        "block_type": "text",
+        "text": "Gate threshold voltage ID=250μA, VDS=VGS 1.3 1.8 2.5 V",
+        "line_number": 26
+      },
+      {
+        "block_id": "p2_l27",
+        "block_type": "text",
+        "text": "R Drain-source on-state resistance 4.5 6 mΩ",
+        "line_number": 27
+      },
+      {
+        "block_id": "p2_l28",
+        "block_type": "text",
+        "text": "DS(on)",
+        "line_number": 28
+      },
+      {
+        "block_id": "p2_l29",
+        "block_type": "text",
+        "text": "ID=40A, VGS=10V",
+        "line_number": 29
+      },
+      {
+        "block_id": "p2_l30",
+        "block_type": "text",
+        "text": "R Drain-source on-state resistance 5.5 mΩ",
+        "line_number": 30
+      },
+      {
+        "block_id": "p2_l31",
+        "block_type": "text",
+        "text": "DS(on)",
+        "line_number": 31
+      },
+      {
+        "block_id": "p2_l32",
+        "block_type": "text",
+        "text": "R",
+        "line_number": 32
+      },
+      {
+        "block_id": "p2_l33",
+        "block_type": "text",
+        "text": "DS(on)",
+        "line_number": 33
+      },
+      {
+        "block_id": "p2_l34",
+        "block_type": "text",
+        "text": "Drain-source on-state resistance ID=20A, VGS=4.5V 7.0 10 mΩ",
+        "line_number": 34
+      },
+      {
+        "block_id": "p2_l35",
+        "block_type": "text",
+        "text": "Dynamic Electrical Characteristics (unless otherwise stated) @ Tj=25°C",
+        "line_number": 35
+      },
+      {
+        "block_id": "p2_l36",
+        "block_type": "text",
+        "text": "C",
+        "line_number": 36
+      },
+      {
+        "block_id": "p2_l37",
+        "block_type": "text",
+        "text": "iss",
+        "line_number": 37
+      },
+      {
+        "block_id": "p2_l38",
+        "block_type": "text",
+        "text": "Input capacitance",
+        "line_number": 38
+      },
+      {
+        "block_id": "p2_l39",
+        "block_type": "text",
+        "text": "f",
+        "line_number": 39
+      },
+      {
+        "block_id": "p2_l40",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 40
+      },
+      {
+        "block_id": "p2_l41",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 41
+      },
+      {
+        "block_id": "p2_l42",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 42
+      },
+      {
+        "block_id": "p2_l43",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 43
+      },
+      {
+        "block_id": "p2_l44",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 44
+      },
+      {
+        "block_id": "p2_l45",
+        "block_type": "text",
+        "text": "M",
+        "line_number": 45
+      },
+      {
+        "block_id": "p2_l46",
+        "block_type": "text",
+        "text": "=0",
+        "line_number": 46
+      },
+      {
+        "block_id": "p2_l47",
+        "block_type": "text",
+        "text": "H",
+        "line_number": 47
+      },
+      {
+        "block_id": "p2_l48",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 48
+      },
+      {
+        "block_id": "p2_l49",
+        "block_type": "text",
+        "text": "z , VDS=30V",
+        "line_number": 49
+      },
+      {
+        "block_id": "p2_l50",
+        "block_type": "text",
+        "text": "1660 1950 2240 pF",
+        "line_number": 50
+      },
+      {
+        "block_id": "p2_l51",
+        "block_type": "text",
+        "text": "C",
+        "line_number": 51
+      },
+      {
+        "block_id": "p2_l52",
+        "block_type": "text",
+        "text": "oss",
+        "line_number": 52
+      },
+      {
+        "block_id": "p2_l53",
+        "block_type": "text",
+        "text": "Output capacitance",
+        "line_number": 53
+      },
+      {
+        "block_id": "p2_l54",
+        "block_type": "text",
+        "text": "f",
+        "line_number": 54
+      },
+      {
+        "block_id": "p2_l55",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 55
+      },
+      {
+        "block_id": "p2_l56",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 56
+      },
+      {
+        "block_id": "p2_l57",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 57
+      },
+      {
+        "block_id": "p2_l58",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 58
+      },
+      {
+        "block_id": "p2_l59",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 59
+      },
+      {
+        "block_id": "p2_l60",
+        "block_type": "text",
+        "text": "M",
+        "line_number": 60
+      },
+      {
+        "block_id": "p2_l61",
+        "block_type": "text",
+        "text": "=0",
+        "line_number": 61
+      },
+      {
+        "block_id": "p2_l62",
+        "block_type": "text",
+        "text": "H",
+        "line_number": 62
+      },
+      {
+        "block_id": "p2_l63",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 63
+      },
+      {
+        "block_id": "p2_l64",
+        "block_type": "text",
+        "text": "z , VDS=30V",
+        "line_number": 64
+      },
+      {
+        "block_id": "p2_l65",
+        "block_type": "text",
+        "text": "715 840 965 pF",
+        "line_number": 65
+      },
+      {
+        "block_id": "p2_l66",
+        "block_type": "text",
+        "text": "C",
+        "line_number": 66
+      },
+      {
+        "block_id": "p2_l67",
+        "block_type": "text",
+        "text": "rss",
+        "line_number": 67
+      },
+      {
+        "block_id": "p2_l68",
+        "block_type": "text",
+        "text": "Reverse transfer capacitance",
+        "line_number": 68
+      },
+      {
+        "block_id": "p2_l69",
+        "block_type": "text",
+        "text": "f",
+        "line_number": 69
+      },
+      {
+        "block_id": "p2_l70",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 70
+      },
+      {
+        "block_id": "p2_l71",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 71
+      },
+      {
+        "block_id": "p2_l72",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 72
+      },
+      {
+        "block_id": "p2_l73",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 73
+      },
+      {
+        "block_id": "p2_l74",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 74
+      },
+      {
+        "block_id": "p2_l75",
+        "block_type": "text",
+        "text": "M",
+        "line_number": 75
+      },
+      {
+        "block_id": "p2_l76",
+        "block_type": "text",
+        "text": "=0",
+        "line_number": 76
+      },
+      {
+        "block_id": "p2_l77",
+        "block_type": "text",
+        "text": "H",
+        "line_number": 77
+      },
+      {
+        "block_id": "p2_l78",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 78
+      },
+      {
+        "block_id": "p2_l79",
+        "block_type": "text",
+        "text": "z , VDS=30V",
+        "line_number": 79
+      },
+      {
+        "block_id": "p2_l80",
+        "block_type": "text",
+        "text": "25 35 45 pF",
+        "line_number": 80
+      },
+      {
+        "block_id": "p2_l81",
+        "block_type": "text",
+        "text": "R Gate resistance f=1MHz 1.3 Ω",
+        "line_number": 81
+      },
+      {
+        "block_id": "p2_l82",
+        "block_type": "text",
+        "text": "g",
+        "line_number": 82
+      },
+      {
+        "block_id": "p2_l83",
+        "block_type": "text",
+        "text": "Q",
+        "line_number": 83
+      },
+      {
+        "block_id": "p2_l84",
+        "block_type": "text",
+        "text": "g",
+        "line_number": 84
+      },
+      {
+        "block_id": "p2_l85",
+        "block_type": "text",
+        "text": "(10V) Total gate charge I",
+        "line_number": 85
+      },
+      {
+        "block_id": "p2_l86",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 86
+      },
+      {
+        "block_id": "p2_l87",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 87
+      },
+      {
+        "block_id": "p2_l88",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 88
+      },
+      {
+        "block_id": "p2_l89",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 89
+      },
+      {
+        "block_id": "p2_l90",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 90
+      },
+      {
+        "block_id": "p2_l91",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 91
+      },
+      {
+        "block_id": "p2_l92",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 92
+      },
+      {
+        "block_id": "p2_l93",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 93
+      },
+      {
+        "block_id": "p2_l94",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 94
+      },
+      {
+        "block_id": "p2_l95",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 95
+      },
+      {
+        "block_id": "p2_l96",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 96
+      },
+      {
+        "block_id": "p2_l97",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 97
+      },
+      {
+        "block_id": "p2_l98",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 98
+      },
+      {
+        "block_id": "p2_l99",
+        "block_type": "text",
+        "text": "V DS=30V 30 nC",
+        "line_number": 99
+      },
+      {
+        "block_id": "p2_l100",
+        "block_type": "text",
+        "text": "Q",
+        "line_number": 100
+      },
+      {
+        "block_id": "p2_l101",
+        "block_type": "text",
+        "text": "g",
+        "line_number": 101
+      },
+      {
+        "block_id": "p2_l102",
+        "block_type": "text",
+        "text": "(4.5V) Total gate charge I",
+        "line_number": 102
+      },
+      {
+        "block_id": "p2_l103",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 103
+      },
+      {
+        "block_id": "p2_l104",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 104
+      },
+      {
+        "block_id": "p2_l105",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 105
+      },
+      {
+        "block_id": "p2_l106",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 106
+      },
+      {
+        "block_id": "p2_l107",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 107
+      },
+      {
+        "block_id": "p2_l108",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 108
+      },
+      {
+        "block_id": "p2_l109",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 109
+      },
+      {
+        "block_id": "p2_l110",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 110
+      },
+      {
+        "block_id": "p2_l111",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 111
+      },
+      {
+        "block_id": "p2_l112",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 112
+      },
+      {
+        "block_id": "p2_l113",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 113
+      },
+      {
+        "block_id": "p2_l114",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 114
+      },
+      {
+        "block_id": "p2_l115",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 115
+      },
+      {
+        "block_id": "p2_l116",
+        "block_type": "text",
+        "text": "V DS=30V 14 nC",
+        "line_number": 116
+      },
+      {
+        "block_id": "p2_l117",
+        "block_type": "text",
+        "text": "Q",
+        "line_number": 117
+      },
+      {
+        "block_id": "p2_l118",
+        "block_type": "text",
+        "text": "gs",
+        "line_number": 118
+      },
+      {
+        "block_id": "p2_l119",
+        "block_type": "text",
+        "text": "Gate-source charge I",
+        "line_number": 119
+      },
+      {
+        "block_id": "p2_l120",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 120
+      },
+      {
+        "block_id": "p2_l121",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 121
+      },
+      {
+        "block_id": "p2_l122",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 122
+      },
+      {
+        "block_id": "p2_l123",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 123
+      },
+      {
+        "block_id": "p2_l124",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 124
+      },
+      {
+        "block_id": "p2_l125",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 125
+      },
+      {
+        "block_id": "p2_l126",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 126
+      },
+      {
+        "block_id": "p2_l127",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 127
+      },
+      {
+        "block_id": "p2_l128",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 128
+      },
+      {
+        "block_id": "p2_l129",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 129
+      },
+      {
+        "block_id": "p2_l130",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 130
+      },
+      {
+        "block_id": "p2_l131",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 131
+      },
+      {
+        "block_id": "p2_l132",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 132
+      },
+      {
+        "block_id": "p2_l133",
+        "block_type": "text",
+        "text": "V DS=30V 6.8 nC",
+        "line_number": 133
+      },
+      {
+        "block_id": "p2_l134",
+        "block_type": "text",
+        "text": "Q",
+        "line_number": 134
+      },
+      {
+        "block_id": "p2_l135",
+        "block_type": "text",
+        "text": "gd",
+        "line_number": 135
+      },
+      {
+        "block_id": "p2_l136",
+        "block_type": "text",
+        "text": "Gate-drain charge I",
+        "line_number": 136
+      },
+      {
+        "block_id": "p2_l137",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 137
+      },
+      {
+        "block_id": "p2_l138",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 138
+      },
+      {
+        "block_id": "p2_l139",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 139
+      },
+      {
+        "block_id": "p2_l140",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 140
+      },
+      {
+        "block_id": "p2_l141",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 141
+      },
+      {
+        "block_id": "p2_l142",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 142
+      },
+      {
+        "block_id": "p2_l143",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 143
+      },
+      {
+        "block_id": "p2_l144",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 144
+      },
+      {
+        "block_id": "p2_l145",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 145
+      },
+      {
+        "block_id": "p2_l146",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 146
+      },
+      {
+        "block_id": "p2_l147",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 147
+      },
+      {
+        "block_id": "p2_l148",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 148
+      },
+      {
+        "block_id": "p2_l149",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 149
+      },
+      {
+        "block_id": "p2_l150",
+        "block_type": "text",
+        "text": "V DS=30V 4.1 nC",
+        "line_number": 150
+      },
+      {
+        "block_id": "p2_l151",
+        "block_type": "text",
+        "text": "Switching Characteristics",
+        "line_number": 151
+      },
+      {
+        "block_id": "p2_l152",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 152
+      },
+      {
+        "block_id": "p2_l153",
+        "block_type": "text",
+        "text": "D(on)",
+        "line_number": 153
+      },
+      {
+        "block_id": "p2_l154",
+        "block_type": "text",
+        "text": "Turn-on delay time I",
+        "line_number": 154
+      },
+      {
+        "block_id": "p2_l155",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 155
+      },
+      {
+        "block_id": "p2_l156",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 156
+      },
+      {
+        "block_id": "p2_l157",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 157
+      },
+      {
+        "block_id": "p2_l158",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 158
+      },
+      {
+        "block_id": "p2_l159",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 159
+      },
+      {
+        "block_id": "p2_l160",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 160
+      },
+      {
+        "block_id": "p2_l161",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 161
+      },
+      {
+        "block_id": "p2_l162",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 162
+      },
+      {
+        "block_id": "p2_l163",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 163
+      },
+      {
+        "block_id": "p2_l164",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 164
+      },
+      {
+        "block_id": "p2_l165",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 165
+      },
+      {
+        "block_id": "p2_l166",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 166
+      },
+      {
+        "block_id": "p2_l167",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 167
+      },
+      {
+        "block_id": "p2_l168",
+        "block_type": "text",
+        "text": "R",
+        "line_number": 168
+      },
+      {
+        "block_id": "p2_l169",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 169
+      },
+      {
+        "block_id": "p2_l170",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 170
+      },
+      {
+        "block_id": "p2_l171",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 171
+      },
+      {
+        "block_id": "p2_l172",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 172
+      },
+      {
+        "block_id": "p2_l173",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 173
+      },
+      {
+        "block_id": "p2_l174",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 174
+      },
+      {
+        "block_id": "p2_l175",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 175
+      },
+      {
+        "block_id": "p2_l176",
+        "block_type": "text",
+        "text": "Ω",
+        "line_number": 176
+      },
+      {
+        "block_id": "p2_l177",
+        "block_type": "text",
+        "text": "=1 0V",
+        "line_number": 177
+      },
+      {
+        "block_id": "p2_l178",
+        "block_type": "text",
+        "text": "8.8 ns",
+        "line_number": 178
+      },
+      {
+        "block_id": "p2_l179",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 179
+      },
+      {
+        "block_id": "p2_l180",
+        "block_type": "text",
+        "text": "r",
+        "line_number": 180
+      },
+      {
+        "block_id": "p2_l181",
+        "block_type": "text",
+        "text": "Turn-on rise time I",
+        "line_number": 181
+      },
+      {
+        "block_id": "p2_l182",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 182
+      },
+      {
+        "block_id": "p2_l183",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 183
+      },
+      {
+        "block_id": "p2_l184",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 184
+      },
+      {
+        "block_id": "p2_l185",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 185
+      },
+      {
+        "block_id": "p2_l186",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 186
+      },
+      {
+        "block_id": "p2_l187",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 187
+      },
+      {
+        "block_id": "p2_l188",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 188
+      },
+      {
+        "block_id": "p2_l189",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 189
+      },
+      {
+        "block_id": "p2_l190",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 190
+      },
+      {
+        "block_id": "p2_l191",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 191
+      },
+      {
+        "block_id": "p2_l192",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 192
+      },
+      {
+        "block_id": "p2_l193",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 193
+      },
+      {
+        "block_id": "p2_l194",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 194
+      },
+      {
+        "block_id": "p2_l195",
+        "block_type": "text",
+        "text": "R",
+        "line_number": 195
+      },
+      {
+        "block_id": "p2_l196",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 196
+      },
+      {
+        "block_id": "p2_l197",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 197
+      },
+      {
+        "block_id": "p2_l198",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 198
+      },
+      {
+        "block_id": "p2_l199",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 199
+      },
+      {
+        "block_id": "p2_l200",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 200
+      },
+      {
+        "block_id": "p2_l201",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 201
+      },
+      {
+        "block_id": "p2_l202",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 202
+      },
+      {
+        "block_id": "p2_l203",
+        "block_type": "text",
+        "text": "Ω",
+        "line_number": 203
+      },
+      {
+        "block_id": "p2_l204",
+        "block_type": "text",
+        "text": "=1 0V",
+        "line_number": 204
+      },
+      {
+        "block_id": "p2_l205",
+        "block_type": "text",
+        "text": "55 ns",
+        "line_number": 205
+      },
+      {
+        "block_id": "p2_l206",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 206
+      },
+      {
+        "block_id": "p2_l207",
+        "block_type": "text",
+        "text": "D(off)",
+        "line_number": 207
+      },
+      {
+        "block_id": "p2_l208",
+        "block_type": "text",
+        "text": "Turn-off delay time I",
+        "line_number": 208
+      },
+      {
+        "block_id": "p2_l209",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 209
+      },
+      {
+        "block_id": "p2_l210",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 210
+      },
+      {
+        "block_id": "p2_l211",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 211
+      },
+      {
+        "block_id": "p2_l212",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 212
+      },
+      {
+        "block_id": "p2_l213",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 213
+      },
+      {
+        "block_id": "p2_l214",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 214
+      },
+      {
+        "block_id": "p2_l215",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 215
+      },
+      {
+        "block_id": "p2_l216",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 216
+      },
+      {
+        "block_id": "p2_l217",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 217
+      },
+      {
+        "block_id": "p2_l218",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 218
+      },
+      {
+        "block_id": "p2_l219",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 219
+      },
+      {
+        "block_id": "p2_l220",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 220
+      },
+      {
+        "block_id": "p2_l221",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 221
+      },
+      {
+        "block_id": "p2_l222",
+        "block_type": "text",
+        "text": "R",
+        "line_number": 222
+      },
+      {
+        "block_id": "p2_l223",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 223
+      },
+      {
+        "block_id": "p2_l224",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 224
+      },
+      {
+        "block_id": "p2_l225",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 225
+      },
+      {
+        "block_id": "p2_l226",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 226
+      },
+      {
+        "block_id": "p2_l227",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 227
+      },
+      {
+        "block_id": "p2_l228",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 228
+      },
+      {
+        "block_id": "p2_l229",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 229
+      },
+      {
+        "block_id": "p2_l230",
+        "block_type": "text",
+        "text": "Ω",
+        "line_number": 230
+      },
+      {
+        "block_id": "p2_l231",
+        "block_type": "text",
+        "text": "=1 0V",
+        "line_number": 231
+      },
+      {
+        "block_id": "p2_l232",
+        "block_type": "text",
+        "text": "23 ns",
+        "line_number": 232
+      },
+      {
+        "block_id": "p2_l233",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 233
+      },
+      {
+        "block_id": "p2_l234",
+        "block_type": "text",
+        "text": "f",
+        "line_number": 234
+      },
+      {
+        "block_id": "p2_l235",
+        "block_type": "text",
+        "text": "Turn-off fall time I",
+        "line_number": 235
+      },
+      {
+        "block_id": "p2_l236",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 236
+      },
+      {
+        "block_id": "p2_l237",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 237
+      },
+      {
+        "block_id": "p2_l238",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 238
+      },
+      {
+        "block_id": "p2_l239",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 239
+      },
+      {
+        "block_id": "p2_l240",
+        "block_type": "text",
+        "text": "D",
+        "line_number": 240
+      },
+      {
+        "block_id": "p2_l241",
+        "block_type": "text",
+        "text": "4",
+        "line_number": 241
+      },
+      {
+        "block_id": "p2_l242",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 242
+      },
+      {
+        "block_id": "p2_l243",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 243
+      },
+      {
+        "block_id": "p2_l244",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 244
+      },
+      {
+        "block_id": "p2_l245",
+        "block_type": "text",
+        "text": "A",
+        "line_number": 245
+      },
+      {
+        "block_id": "p2_l246",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 246
+      },
+      {
+        "block_id": "p2_l247",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 247
+      },
+      {
+        "block_id": "p2_l248",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 248
+      },
+      {
+        "block_id": "p2_l249",
+        "block_type": "text",
+        "text": "R",
+        "line_number": 249
+      },
+      {
+        "block_id": "p2_l250",
+        "block_type": "text",
+        "text": ",",
+        "line_number": 250
+      },
+      {
+        "block_id": "p2_l251",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 251
+      },
+      {
+        "block_id": "p2_l252",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 252
+      },
+      {
+        "block_id": "p2_l253",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 253
+      },
+      {
+        "block_id": "p2_l254",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 254
+      },
+      {
+        "block_id": "p2_l255",
+        "block_type": "text",
+        "text": "3",
+        "line_number": 255
+      },
+      {
+        "block_id": "p2_l256",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 256
+      },
+      {
+        "block_id": "p2_l257",
+        "block_type": "text",
+        "text": "Ω",
+        "line_number": 257
+      },
+      {
+        "block_id": "p2_l258",
+        "block_type": "text",
+        "text": "=1 0V",
+        "line_number": 258
+      },
+      {
+        "block_id": "p2_l259",
+        "block_type": "text",
+        "text": "33 ns",
+        "line_number": 259
+      },
+      {
+        "block_id": "p2_l260",
+        "block_type": "text",
+        "text": "Source- Drain Diode Characteristics (unless otherwise stated) @ Tj=25°C",
+        "line_number": 260
+      },
+      {
+        "block_id": "p2_l261",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 261
+      },
+      {
+        "block_id": "p2_l262",
+        "block_type": "text",
+        "text": "SD",
+        "line_number": 262
+      },
+      {
+        "block_id": "p2_l263",
+        "block_type": "text",
+        "text": "Forward on voltage ISD=40A, VGS=0V 0.8 1.2 V",
+        "line_number": 263
+      },
+      {
+        "block_id": "p2_l264",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 264
+      },
+      {
+        "block_id": "p2_l265",
+        "block_type": "text",
+        "text": "rr",
+        "line_number": 265
+      },
+      {
+        "block_id": "p2_l266",
+        "block_type": "text",
+        "text": "Reverse recovery time(Tj=25℃℃)",
+        "line_number": 266
+      },
+      {
+        "block_id": "p2_l267",
+        "block_type": "text",
+        "text": "d",
+        "line_number": 267
+      },
+      {
+        "block_id": "p2_l268",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 268
+      },
+      {
+        "block_id": "p2_l269",
+        "block_type": "text",
+        "text": "i",
+        "line_number": 269
+      },
+      {
+        "block_id": "p2_l270",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 270
+      },
+      {
+        "block_id": "p2_l271",
+        "block_type": "text",
+        "text": "/d",
+        "line_number": 271
+      },
+      {
+        "block_id": "p2_l272",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 272
+      },
+      {
+        "block_id": "p2_l273",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 273
+      },
+      {
+        "block_id": "p2_l274",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 274
+      },
+      {
+        "block_id": "p2_l275",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 275
+      },
+      {
+        "block_id": "p2_l276",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 276
+      },
+      {
+        "block_id": "p2_l277",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 277
+      },
+      {
+        "block_id": "p2_l278",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 278
+      },
+      {
+        "block_id": "p2_l279",
+        "block_type": "text",
+        "text": "0 0A/μs, ISD=40A",
+        "line_number": 279
+      },
+      {
+        "block_id": "p2_l280",
+        "block_type": "text",
+        "text": "27 ns",
+        "line_number": 280
+      },
+      {
+        "block_id": "p2_l281",
+        "block_type": "text",
+        "text": "Q",
+        "line_number": 281
+      },
+      {
+        "block_id": "p2_l282",
+        "block_type": "text",
+        "text": "rr",
+        "line_number": 282
+      },
+      {
+        "block_id": "p2_l283",
+        "block_type": "text",
+        "text": "Reverse recovery charge(Tj=25℃℃)",
+        "line_number": 283
+      },
+      {
+        "block_id": "p2_l284",
+        "block_type": "text",
+        "text": "d",
+        "line_number": 284
+      },
+      {
+        "block_id": "p2_l285",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 285
+      },
+      {
+        "block_id": "p2_l286",
+        "block_type": "text",
+        "text": "i",
+        "line_number": 286
+      },
+      {
+        "block_id": "p2_l287",
+        "block_type": "text",
+        "text": "G",
+        "line_number": 287
+      },
+      {
+        "block_id": "p2_l288",
+        "block_type": "text",
+        "text": "/d",
+        "line_number": 288
+      },
+      {
+        "block_id": "p2_l289",
+        "block_type": "text",
+        "text": "S",
+        "line_number": 289
+      },
+      {
+        "block_id": "p2_l290",
+        "block_type": "text",
+        "text": "t",
+        "line_number": 290
+      },
+      {
+        "block_id": "p2_l291",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 291
+      },
+      {
+        "block_id": "p2_l292",
+        "block_type": "text",
+        "text": "=",
+        "line_number": 292
+      },
+      {
+        "block_id": "p2_l293",
+        "block_type": "text",
+        "text": "0",
+        "line_number": 293
+      },
+      {
+        "block_id": "p2_l294",
+        "block_type": "text",
+        "text": "1",
+        "line_number": 294
+      },
+      {
+        "block_id": "p2_l295",
+        "block_type": "text",
+        "text": "V",
+        "line_number": 295
+      },
+      {
+        "block_id": "p2_l296",
+        "block_type": "text",
+        "text": "0 0A/μs, ISD=40A",
+        "line_number": 296
+      },
+      {
+        "block_id": "p2_l297",
+        "block_type": "text",
+        "text": "14 nC",
+        "line_number": 297
+      },
+      {
+        "block_id": "p2_l298",
+        "block_type": "text",
+        "text": "Page 2 of 7",
+        "line_number": 298
+      },
+      {
+        "block_id": "p2_l299",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 299
+      }
+    ],
+    "tables": [
+      {
+        "table_id": "p2_t0",
+        "rows": [
+          [
+            "Symbol",
+            "Parameter",
+            "Typ",
+            "Max",
+            "Unit"
+          ]
+        ]
+      },
+      {
+        "table_id": "p2_t1",
+        "rows": [
+          [
+            "Symbol",
+            "Parameter",
+            "Condition",
+            "Min.",
+            "Typ.",
+            "Max.",
+            "Unit"
+          ],
+          [
+            "Static Electrical Characteristics (unless otherwise stated) @ Tj=25°C",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "BV\nDSS",
+            "Drain-source breakdown voltage",
+            "ID=250μA, VGS=0V",
+            "65",
+            "",
+            "",
+            "V"
+          ],
+          [
+            "I\nDSS",
+            "Zero gate voltage drain current",
+            "VDS=60V, VGS=0V",
+            "",
+            "",
+            "1",
+            "μA"
+          ],
+          [
+            "I\nDSS",
+            "Zero gate voltage drain current",
+            "VDS=60V, VGS=0V",
+            "",
+            "",
+            "100",
+            "μA"
+          ],
+          [
+            "I\nDSS",
+            "Zero gate voltage drain current",
+            "VDS=60V, VGS=0V",
+            "",
+            "",
+            "100",
+            "μA"
+          ],
+          [
+            "I\nGSS",
+            "Gate-body leakage current",
+            "VDS=0V, VGS=±20V",
+            "",
+            "",
+            "±100",
+            "nA"
+          ],
+          [
+            "V\nGS(th)",
+            "Gate threshold voltage",
+            "ID=250μA, VDS=VGS",
+            "1.3",
+            "1.8",
+            "2.5",
+            "V"
+          ],
+          [
+            "R\nDS(on)",
+            "Drain-source on-state resistance",
+            "ID=40A, VGS=10V",
+            "",
+            "4.5",
+            "6",
+            "mΩ"
+          ],
+          [
+            "R\nDS(on)",
+            "Drain-source on-state resistance",
+            null,
+            "",
+            "5.5",
+            "",
+            "mΩ"
+          ],
+          [
+            "R\nDS(on)",
+            "Drain-source on-state resistance",
+            "ID=20A, VGS=4.5V",
+            "",
+            "7.0",
+            "10",
+            "mΩ"
+          ],
+          [
+            "Dynamic Electrical Characteristics (unless otherwise stated) @ Tj=25°C",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "C\niss",
+            "Input capacitance",
+            "f=1MHz, VDS=30V\nVGS=0V",
+            "1660",
+            "1950",
+            "2240",
+            "pF"
+          ],
+          [
+            "C\noss",
+            "Output capacitance",
+            "f=1MHz, VDS=30V\nVGS=0V",
+            "715",
+            "840",
+            "965",
+            "pF"
+          ],
+          [
+            "C\nrss",
+            "Reverse transfer capacitance",
+            "f=1MHz, VDS=30V\nVGS=0V",
+            "25",
+            "35",
+            "45",
+            "pF"
+          ],
+          [
+            "R\ng",
+            "Gate resistance",
+            "f=1MHz",
+            "",
+            "1.3",
+            "",
+            "Ω"
+          ],
+          [
+            "Q (10V)\ng",
+            "Total gate charge",
+            "ID=40A, VDS=30V\nVGS=10V",
+            "",
+            "30",
+            "",
+            "nC"
+          ],
+          [
+            "Q (4.5V)\ng",
+            "Total gate charge",
+            "ID=40A, VDS=30V\nVGS=10V",
+            "",
+            "14",
+            "",
+            "nC"
+          ],
+          [
+            "Q\ngs",
+            "Gate-source charge",
+            "ID=40A, VDS=30V\nVGS=10V",
+            "",
+            "6.8",
+            "",
+            "nC"
+          ],
+          [
+            "Q\ngd",
+            "Gate-drain charge",
+            "ID=40A, VDS=30V\nVGS=10V",
+            "",
+            "4.1",
+            "",
+            "nC"
+          ],
+          [
+            "Switching Characteristics",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "t\nD(on)",
+            "Turn-on delay time",
+            "ID=40A, RG=3Ω\nVDD=30V, VGS=10V",
+            "",
+            "8.8",
+            "",
+            "ns"
+          ],
+          [
+            "t\nr",
+            "Turn-on rise time",
+            "ID=40A, RG=3Ω\nVDD=30V, VGS=10V",
+            "",
+            "55",
+            "",
+            "ns"
+          ],
+          [
+            "t\nD(off)",
+            "Turn-off delay time",
+            "ID=40A, RG=3Ω\nVDD=30V, VGS=10V",
+            "",
+            "23",
+            "",
+            "ns"
+          ],
+          [
+            "t\nf",
+            "Turn-off fall time",
+            "ID=40A, RG=3Ω\nVDD=30V, VGS=10V",
+            "",
+            "33",
+            "",
+            "ns"
+          ],
+          [
+            "Source- Drain Diode Characteristics (unless otherwise stated) @ Tj=25°C",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "V\nSD",
+            "Forward on voltage",
+            "ISD=40A, VGS=0V",
+            "",
+            "0.8",
+            "1.2",
+            "V"
+          ],
+          [
+            "t\nrr",
+            "Reverse recovery time(Tj=25℃℃)",
+            "di/dt=100A/μs, ISD=40A\nVGS=0V",
+            "",
+            "27",
+            "",
+            "ns"
+          ],
+          [
+            "Q\nrr",
+            "Reverse recovery charge(Tj=25℃℃)",
+            "di/dt=100A/μs, ISD=40A\nVGS=0V",
+            "",
+            "14",
+            "",
+            "nC"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "page_number": 3,
+    "blocks": [
+      {
+        "block_id": "p3_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p3_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p3_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p3_l3",
+        "block_type": "text",
+        "text": "NOTE:",
+        "line_number": 3
+      },
+      {
+        "block_id": "p3_l4",
+        "block_type": "text",
+        "text": "① Repetitive rating; pulse width limited by max junction temperature.",
+        "line_number": 4
+      },
+      {
+        "block_id": "p3_l5",
+        "block_type": "text",
+        "text": "② The power dissipation PDSM is based on RθJA and the maximum allowed junction temperature of 150°C.",
+        "line_number": 5
+      },
+      {
+        "block_id": "p3_l6",
+        "block_type": "text",
+        "text": "③ Limited by TJmax, starting TJ = 25°C, L = 0.5mH, RG = 25Ω, IAS = 10A, VGS =10V. Part not recommended for use above this value",
+        "line_number": 6
+      },
+      {
+        "block_id": "p3_l7",
+        "block_type": "text",
+        "text": "Switching Test Circuit and Switching Waveforms",
+        "line_number": 7
+      },
+      {
+        "block_id": "p3_l8",
+        "block_type": "text",
+        "text": "Page 3 of 7",
+        "line_number": 8
+      },
+      {
+        "block_id": "p3_l9",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 9
+      }
+    ],
+    "tables": []
+  },
+  {
+    "page_number": 4,
+    "blocks": [
+      {
+        "block_id": "p4_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p4_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p4_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p4_l3",
+        "block_type": "text",
+        "text": "Characteristics Curve",
+        "line_number": 3
+      },
+      {
+        "block_id": "p4_l4",
+        "block_type": "text",
+        "text": "Figure.1 Typical output characteristics Figure.2 Typical transfer characteristics",
+        "line_number": 4
+      },
+      {
+        "block_id": "p4_l5",
+        "block_type": "text",
+        "text": "Figure.3 Typical normalized on-resistance vs. T Figure.4 Typical source-drain diode forward voltage",
+        "line_number": 5
+      },
+      {
+        "block_id": "p4_l6",
+        "block_type": "text",
+        "text": "j",
+        "line_number": 6
+      },
+      {
+        "block_id": "p4_l7",
+        "block_type": "text",
+        "text": "Figure.5 Maximum safe operating area Figure.6 Typical capacitance vs. Drain-source voltage",
+        "line_number": 7
+      },
+      {
+        "block_id": "p4_l8",
+        "block_type": "text",
+        "text": "Page 4 of 7",
+        "line_number": 8
+      },
+      {
+        "block_id": "p4_l9",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 9
+      }
+    ],
+    "tables": [
+      {
+        "table_id": "p4_t0",
+        "rows": [
+          [
+            "Figure.1 Typical output characteristics",
+            "Figure.2 Typical transfer characteristics"
+          ],
+          [
+            "Figure.3 Typical normalized on-resistance vs. T\nj",
+            "Figure.4 Typical source-drain diode forward voltage"
+          ],
+          [
+            "Figure.5 Maximum safe operating area",
+            "Figure.6 Typical capacitance vs. Drain-source voltage"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "page_number": 5,
+    "blocks": [
+      {
+        "block_id": "p5_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p5_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p5_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p5_l3",
+        "block_type": "text",
+        "text": "Figure.7 Typical gate charge vs. Gate-source voltage Figure.8 VGS(th) gate-source voltage vs. T",
+        "line_number": 3
+      },
+      {
+        "block_id": "p5_l4",
+        "block_type": "text",
+        "text": "j",
+        "line_number": 4
+      },
+      {
+        "block_id": "p5_l5",
+        "block_type": "text",
+        "text": "Figure.9 Normalized maximum transient thermal impedance",
+        "line_number": 5
+      },
+      {
+        "block_id": "p5_l6",
+        "block_type": "text",
+        "text": "Page 5 of 7",
+        "line_number": 6
+      },
+      {
+        "block_id": "p5_l7",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 7
+      }
+    ],
+    "tables": [
+      {
+        "table_id": "p5_t0",
+        "rows": [
+          [
+            "Figure.7 Typical gate charge vs. Gate-source voltage",
+            "Figure.8 VGS(th) gate-source voltage vs. T\nj"
+          ],
+          [
+            "Figure.9 Normalized maximum transient thermal impedance",
+            null
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "page_number": 6,
+    "blocks": [
+      {
+        "block_id": "p6_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p6_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p6_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p6_l3",
+        "block_type": "text",
+        "text": "PDFN5*6 PACKAGE OUTLINE DIMENSIONS",
+        "line_number": 3
+      },
+      {
+        "block_id": "p6_l4",
+        "block_type": "text",
+        "text": "Page 6 of 7",
+        "line_number": 4
+      },
+      {
+        "block_id": "p6_l5",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 5
+      }
+    ],
+    "tables": []
+  },
+  {
+    "page_number": 7,
+    "blocks": [
+      {
+        "block_id": "p7_l0",
+        "block_type": "text",
+        "text": "Gem-micro",
+        "line_number": 0
+      },
+      {
+        "block_id": "p7_l1",
+        "block_type": "text",
+        "text": "GR075N06B",
+        "line_number": 1
+      },
+      {
+        "block_id": "p7_l2",
+        "block_type": "text",
+        "text": "semiconductor Inc.",
+        "line_number": 2
+      },
+      {
+        "block_id": "p7_l3",
+        "block_type": "text",
+        "text": "Notice",
+        "line_number": 3
+      },
+      {
+        "block_id": "p7_l4",
+        "block_type": "text",
+        "text": "1. Specification of the products displayed herein is subject to change without notice. Continuous development may necessitate change in",
+        "line_number": 4
+      },
+      {
+        "block_id": "p7_l5",
+        "block_type": "text",
+        "text": "technical data without notice. GEM-MICRO or anyone on its behalf assumes no responsibility or liability for any errors or inaccuracies.",
+        "line_number": 5
+      },
+      {
+        "block_id": "p7_l6",
+        "block_type": "text",
+        "text": "2. Stresses beyond those listed under “Absolute Maximum Ratings” may cause permanent damage to the device. These are stress ratings",
+        "line_number": 6
+      },
+      {
+        "block_id": "p7_l7",
+        "block_type": "text",
+        "text": "only and functional operation of the device at these or any other conditions beyond those indicated in the operational sections of the",
+        "line_number": 7
+      },
+      {
+        "block_id": "p7_l8",
+        "block_type": "text",
+        "text": "specifications are not implied. Exposure to absolute maximum rating conditions for extended periods may affect device reliability.",
+        "line_number": 8
+      },
+      {
+        "block_id": "p7_l9",
+        "block_type": "text",
+        "text": "3. Details are subject to change without notice .",
+        "line_number": 9
+      },
+      {
+        "block_id": "p7_l10",
+        "block_type": "text",
+        "text": "Page 7 of 7",
+        "line_number": 10
+      },
+      {
+        "block_id": "p7_l11",
+        "block_type": "text",
+        "text": "DS-GR075N06B-EN-REV01",
+        "line_number": 11
+      }
+    ],
+    "tables": []
+  }
+]

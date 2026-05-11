@@ -1,0 +1,22 @@
+y=632.0: f
+y=644.0: Source-Drain DiodeCharacteristics@T =25°C (unlessotherwisestated)
+y=647.0: j
+y=668.0: Forwardonvoltage ISD=40A,VGS=0V -- 0.8 1.2 V
+y=670.0: V
+y=677.0: SD
+y=687.0: Tj=25℃,Isd=40A,
+y=690.0: ReverseRecoveryTime -- 27 -- ns
+y=693.0: t
+y=700.0: rr
+y=703.0: VGS=0V
+y=713.0: ReverseRecoveryCharge -- 14 -- nC
+y=715.0: Q
+y=719.0: di/dt=100A/μs
+y=722.0: rr
+y=731.0: NOTE:①Repetitiverating;pulsewidthlimitedbymaxjunctiontemperature.
+y=747.0: ②LimitedbyTJmax,startingTJ=25°C,L=0.5mH,RG=25Ω,IAS=10A,VGS=10V.Partnotrecommendedforuseabovethisvalue
+y=762.0: ③ThepowerdissipationPDSMisbasedonRθJAandthemaximumallowedjunctiontemperatureof150°C.
+y=778.0: ④Pulsewidth≤380μs;dutycycle≤2%.
+y=802.0: CopyrightVergigaSemiconductorCo.,Ltd
+y=812.0: www.vgsemi.com
+y=813.0: Rev C – APR, 2022
