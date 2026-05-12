@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(python \"E:\\\\code\\\\rag\\\\normalize_script.py\")"
+      "PowerShell(python \"E:\\\\code\\\\rag\\\\normalize_script.py\")",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -c \"import db.embeddings; print\\('embeddings OK'\\); import sys; assert 'psycopg2' not in sys.modules and 'minio' not in sys.modules and 'pdfplumber' not in sys.modules, 'leaked dep'; print\\('isolation OK'\\)\")",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -c \"import db.minio_client; print\\('minio_client OK'\\); import sys; assert 'psycopg2' not in sys.modules and 'sentence_transformers' not in sys.modules and 'pdfplumber' not in sys.modules, 'leaked dep'; print\\('isolation OK'\\)\")",
+      "PowerShell($tcp = New-Object System.Net.Sockets.TcpClient; try { $tcp.Connect\\('localhost', 7000\\); Write-Host 'PG:7000 reachable' } catch { Write-Host \"PG:7000 NOT reachable: $\\($_.Exception.Message\\)\" } finally { $tcp.Close\\(\\) }; $tcp2 = New-Object System.Net.Sockets.TcpClient; try { $tcp2.Connect\\('localhost', 7002\\); Write-Host 'MinIO:7002 reachable' } catch { Write-Host \"MinIO:7002 NOT reachable: $\\($_.Exception.Message\\)\" } finally { $tcp2.Close\\(\\) })",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe db\\\\inserter.py pdfs\\\\VSP007N06MS-G.pdf 2>&1)"
     ]
   }
 }

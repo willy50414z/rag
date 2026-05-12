@@ -1,0 +1,131 @@
+{
+  "pdf_path": "pdfs/VSP007N06MS-G.pdf",
+  "target": "both",
+  "extract_pages": [1, 2],
+  "tables": [
+    {
+      "name": "parts",
+      "table_ref": "P1-T1",
+      "primary_key": ["part_id"],
+      "anchor": {
+        "type": "header_text",
+        "headers": ["PartID", "PackageType", "Marking", "Packing"],
+        "search_pages": [1],
+        "fallback": "regex_page_text"
+      },
+      "fields": [
+        {"name": "part_id",    "type": "TEXT", "nullable": false},
+        {"name": "package",    "type": "TEXT", "nullable": false},
+        {"name": "marking",    "type": "TEXT", "nullable": false},
+        {"name": "packing",    "type": "TEXT", "nullable": true},
+        {"name": "source_page","type": "INT",  "nullable": false, "fixed": 1},
+        {"name": "table_ref",  "type": "TEXT", "nullable": false, "fixed": "P1-T1"}
+      ]
+    },
+    {
+      "name": "max_ratings",
+      "table_ref": "P1-T2",
+      "primary_key": ["part_id", "symbol", "condition_normalized"],
+      "anchor": {
+        "type": "header_text",
+        "headers": ["Symbol", "Parameter", "Rating", "Unit"],
+        "search_pages": [1],
+        "fallback": "warn_empty"
+      },
+      "forward_fill": ["symbol", "parameter"],
+      "fields": [
+        {"name": "part_id",              "type": "TEXT", "nullable": false},
+        {"name": "symbol",               "type": "TEXT", "nullable": false, "forward_fill": true},
+        {"name": "parameter",            "type": "TEXT", "nullable": false, "forward_fill": true},
+        {"name": "condition_raw",        "type": "TEXT", "nullable": true},
+        {"name": "condition_normalized", "type": "TEXT", "nullable": true},
+        {"name": "value_raw",            "type": "TEXT", "nullable": false},
+        {"name": "value_num",            "type": "REAL", "nullable": true},
+        {"name": "value_min",            "type": "REAL", "nullable": true},
+        {"name": "value_max_num",        "type": "REAL", "nullable": true},
+        {"name": "unit",                 "type": "TEXT", "nullable": false},
+        {"name": "footnote_ref",         "type": "TEXT", "nullable": true},
+        {"name": "source_page",          "type": "INT",  "nullable": false, "fixed": 1},
+        {"name": "table_ref",            "type": "TEXT", "nullable": false, "fixed": "P1-T2"}
+      ]
+    },
+    {
+      "name": "thermal_characteristics",
+      "table_ref": "P1-T3",
+      "primary_key": ["part_id", "symbol"],
+      "anchor": {
+        "type": "header_text",
+        "headers": ["Symbol", "Parameter", "Typical", "Unit"],
+        "search_pages": [1],
+        "fallback": "warn_empty"
+      },
+      "fields": [
+        {"name": "part_id",    "type": "TEXT", "nullable": false},
+        {"name": "symbol",     "type": "TEXT", "nullable": false},
+        {"name": "parameter",  "type": "TEXT", "nullable": false},
+        {"name": "typ",        "type": "REAL", "nullable": false},
+        {"name": "unit",       "type": "TEXT", "nullable": false},
+        {"name": "source_page","type": "INT",  "nullable": false, "fixed": 1},
+        {"name": "table_ref",  "type": "TEXT", "nullable": false, "fixed": "P1-T3"}
+      ]
+    },
+    {
+      "name": "electrical_characteristics",
+      "table_ref": "P2-T0",
+      "primary_key": ["part_id", "symbol", "condition_normalized"],
+      "anchor": {
+        "type": "header_text",
+        "headers": ["Symbol", "Parameter", "Condition", "Min.", "Typ.", "Max.", "Unit"],
+        "search_pages": [2],
+        "col_count": 8,
+        "fallback": "warn_empty"
+      },
+      "section_split": {
+        "patterns": ["Static", "Dynamic", "Switching", "Source-Drain"],
+        "map": {
+          "Static": "Static",
+          "Dynamic": "Dynamic",
+          "Switching": "Switching",
+          "Source-Drain": "DiodeCharacteristics"
+        },
+        "default": "Static"
+      },
+      "forward_fill": ["symbol", "parameter", "condition_primary"],
+      "fields": [
+        {"name": "part_id",              "type": "TEXT", "nullable": false},
+        {"name": "symbol",               "type": "TEXT", "nullable": false},
+        {"name": "parameter",            "type": "TEXT", "nullable": false},
+        {"name": "section",              "type": "TEXT", "nullable": false},
+        {"name": "condition_raw",        "type": "TEXT", "nullable": true},
+        {"name": "condition_kv",         "type": "TEXT", "nullable": true},
+        {"name": "condition_normalized", "type": "TEXT", "nullable": true},
+        {"name": "min",                  "type": "REAL", "nullable": true},
+        {"name": "typ",                  "type": "REAL", "nullable": true},
+        {"name": "max",                  "type": "REAL", "nullable": true},
+        {"name": "value_raw",            "type": "TEXT", "nullable": true},
+        {"name": "unit",                 "type": "TEXT", "nullable": false},
+        {"name": "footnote_ref",         "type": "TEXT", "nullable": true},
+        {"name": "source_page",          "type": "INT",  "nullable": false, "fixed": 2},
+        {"name": "table_ref",            "type": "TEXT", "nullable": false, "fixed": "P2-T0"}
+      ]
+    },
+    {
+      "name": "typical_charts",
+      "table_ref": "P3-P4-charts",
+      "primary_key": ["part_id", "minio_key"],
+      "anchor": {
+        "type": "text_block",
+        "pattern": "Fig\\d+\\.",
+        "search_pages": [3, 4],
+        "library": "pymupdf"
+      },
+      "fields": [
+        {"name": "part_id",    "type": "TEXT", "nullable": false},
+        {"name": "caption",    "type": "TEXT", "nullable": false},
+        {"name": "source_page","type": "INT",  "nullable": false},
+        {"name": "minio_key",  "type": "TEXT", "nullable": false},
+        {"name": "table_ref",  "type": "TEXT", "nullable": false, "fixed": "P3-P4-charts"}
+      ]
+    }
+  ]
+}
