@@ -1,198 +1,95 @@
 # Table Extraction Guidelines
 
-Use this reference when a text PDF contains visually table-like content and the workflow must preserve it as a table artifact rather than flattening it into normal text.
-
-The goal is not to force every table into a perfect grid. The goal is to preserve as much trustworthy row/column structure as the backend supports while keeping uncertainty visible.
+Use this reference during ppg-explore Step 3A (結構面分析) when a page contains visually table-like content that needs to be extracted reliably. The goal is to understand extraction risks so the parser design accounts for them — not to produce an intermediate table artifact.
 
 ## Core rule
 
-Treat table extraction as a distinct parsing task.
+During explore, identify which failure modes apply to each table. Every failure mode you spot here becomes a handling rule in the spec and a test case in the parser.
 
-Do not:
-
-- flatten a table into ordinary paragraph text
-- convert rows into final key-value fields during raw extraction
-- guess merged or missing cells without evidence
+---
 
 ## 1. When to classify content as a table
 
 Strong table signals:
-
 - repeated row alignment
 - consistent column bands across multiple rows
 - header-like first row
 - numeric values arranged in vertical bands
 - parameter/value/unit/min/max style layout
 
-Weak signals:
-
+Weak signals (treat as prose, not table):
 - one isolated label-value pair
 - a bullet list that happens to align visually
 - prose with accidental spacing
 
-If a block is table-like but uncertain:
+---
 
-- preserve it as a table candidate
-- mark the limitation in `note`
-- avoid premature conversion into paragraph text
-
-## 2. Output formats
-
-Prefer one of these two formats:
-
-- `grid`
-- `raw-text`
-
-### Use `grid` when
-
-- row boundaries are reliable
-- column alignment is stable
-- cell segmentation is defensible
-
-### Use `raw-text` when
-
-- OCR-like corruption exists even in a text PDF extract
-- merged cells make grid reconstruction speculative
-- line wrapping destroys row boundaries
-- the backend can see table content but not trustworthy cell boundaries
-
-## 3. Grid expectations
-
-For `grid` output:
-
-- preserve row order
-- preserve column order
-- keep repeated headers or repeated values if present
-- represent empty visible cells as `""`
-- do not deduplicate
-
-If the first row is plausibly a header, keep it as the first row.
-
-Do not create artificial header names.
-
-## 4. Raw-text expectations
-
-For `raw-text` output:
-
-- preserve the most faithful linear representation available
-- include line breaks when they help preserve row boundaries
-- add a `note` explaining why grid extraction is unsafe
-
-Example reasons:
-
-- merged cell structure ambiguous
-- cross-page continuation unresolved
-- alignment too weak for stable grid
-
-## 5. Common table failure modes
+## 2. Common table failure modes
 
 ### Merged cells
 
 Symptoms:
-
-- one label visually spans several columns
+- one label visually spans several columns (e.g. section header row)
 - subheaders exist beneath a broader header
+- cell text is empty but clearly belongs to the cell above
 
-Recommended handling:
-
-- if backend cannot represent hierarchy safely, use `raw-text`
-- do not invent duplicate header names to fill gaps
+Impact on parser: forward-fill logic is needed. Spec must mark which columns inherit from above.
 
 ### Cross-page tables
 
 Symptoms:
-
 - header on page N, continuation rows on page N+1
-- repeated header with continued values
+- repeated header row with continued values
+- "continued" or "(cont.)" text near table
 
-Recommended handling:
-
-- preserve page-local table artifacts first
-- only merge across pages if continuation is clear
-- if merged, keep source page traceability in notes or metadata
+Impact on parser: anchor must search across multiple pages. Row count expectations must account for split. Evidence trace must reflect correct source page per row.
 
 ### Wrapped cell text
 
 Symptoms:
-
 - long cell values appear on multiple lines
 - row height varies significantly
+- pdfplumber splits a logical row into two extracted rows
 
-Recommended handling:
-
-- merge wrapped lines only when row membership is clear
-- if not clear, degrade to `raw-text`
+Impact on parser: row merging logic needed before field extraction. Anchor-based row detection may need line-span tolerance.
 
 ### Borderless tables
 
 Symptoms:
-
 - no visible grid lines
 - alignment alone implies columns
+- pdfplumber may fail to detect table at all, or split it incorrectly
 
-Recommended handling:
+Impact on parser: may need to fall back to explicit column x-range extraction rather than relying on pdfplumber's built-in table detection.
 
-- rely on repeated x-band patterns
-- prefer conservative extraction
-- if alignment confidence is weak, use `raw-text`
+### Repeated header rows
 
-## 6. Relationship to normalized.json
+Symptoms:
+- the same header row appears on multiple pages
+- sometimes mid-table on the same page (less common)
 
-In `normalized.json`, tables should remain distinct from paragraphs.
+Impact on parser: must distinguish real header from repeated header. Repeated headers should be filtered, not treated as data rows.
 
-Recommended behaviors:
+---
 
-- keep `tables` as a dedicated collection
-- allow sections to reference nearby tables
-- allow candidate fields to cite table evidence
-- do not silently absorb table rows into paragraph sections
+## 3. Questions to answer during explore Step 3A
 
-## 7. Relationship to field extraction
+For each table, answer:
 
-Later stages may derive fields from tables, but raw/normalized extraction should not collapse the distinction.
+- Does this table have merged cells? Which columns?
+- Does it span multiple pages? If so, how many?
+- Do any cells contain wrapped text that could break row detection?
+- Are there visible grid lines, or is alignment the only structure?
+- Does the header row repeat on continuation pages?
+- Are there rows that look like data but are actually section headers?
 
-Good downstream pattern:
+---
 
-- raw extraction preserves table structure
-- normalized artifact marks table context
-- field review chooses whether a field comes from table evidence
-- parser uses table-aware logic when required
+## 4. Chunking implications
 
-Bad downstream pattern:
-
-- flatten table text
-- lose row/column boundaries
-- guess final values from a broken linear string
-
-## 8. Review checklist
-
-When inspecting table extraction, ask:
-
-- Is this really a table or just aligned prose?
-- Are row boundaries trustworthy?
-- Are column boundaries trustworthy?
-- Would forcing grid lose information?
-- Is `raw-text` the more honest representation?
-- Will later field extraction need row/column structure here?
-
-## 9. Chunking implications
-
-Tables often degrade retrieval when split carelessly.
-
-Call out these risks in review:
+Tables degrade retrieval when split carelessly. Flag these risks during explore:
 
 - a table should stay intact as one chunkable unit
 - summary rows should not be detached from their table
 - cross-page tables may need special handling
-- table notes and footnotes may belong with the table
-
-## 10. Red flags
-
-Stop and report instead of overfitting when:
-
-- table boundaries are unclear
-- grid extraction requires guessing many cells
-- continuation across pages is doubtful
-- the backend alternates between paragraph-like and table-like output for the same region
-
-When blocked, prefer a truthful `raw-text` table artifact over a fragile fake grid.
+- footnotes attached to specific rows should travel with those rows

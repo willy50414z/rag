@@ -774,3 +774,97 @@ Phase 9  MLOps / Production
 Agent、fine-tuning、production 都重要，但都應該建立在前面這四項已經穩定的前提上。
 
 如果你照這份順序實作，做完 Phase 1 到 Phase 6，通常就已經能做出一個很實用的 RAG / extraction 系統原型。
+
+---
+
+## 專案實作總結
+
+> 此章節記錄本次學習計畫的實際完成情況、技術決策與評估結果。
+> 完成時間：2026-05
+
+### 實際完成的 Phase
+
+| Phase | 狀態 | 備註 |
+| --- | --- | --- |
+| Phase 1 — Python 基礎 | ✅ 完成 | |
+| Phase 2 — LLM 與 Prompt Engineering | ✅ 完成 | |
+| Phase 3 — PDF 與文件解析 | ✅ 完成 | 建立 vdsemi_parser，使用 pdfplumber + semantic anchor 定位表格 |
+| Phase 4 — Embedding 與 RAG | ✅ 部分完成 | 完成 embedding 基礎建設，最終評估後決定不以 embedding 做主要查詢路徑 |
+| Phase 5 — Structured Extraction | ✅ 完成 | parser 可穩定抽出 max_ratings、electrical、thermal、charts、footnotes |
+| Phase 6 — Validation System | ✅ 完成 | 三層驗證系統：格式 → 業務邏輯 → confidence scoring |
+| Phase 7+ | ⏸ 暫緩 | |
+
+### 實際建立的系統
+
+```
+PDF
+  └─► vdsemi_parser.py          解析結構化表格與圖表
+        └─► normalizer.py        symbol / package / channel 正規化
+              └─► validator.py   三層驗證（格式 / 業務邏輯 / confidence）
+                    └─► embeddings.py + text_representations.py
+                          └─► minio_client.py   圖表上傳
+                                └─► upserts.py  PostgreSQL upsert（含冪等去重）
+
+db/query.py   semantic search across 5 tables + format_context() for LLM
+```
+
+**技術選型：**
+
+- Parser：`pdfplumber`，使用 semantic anchor（固定標題字串）定位表格位置
+- Embedding model：`all-MiniLM-L6-v2`（384 維），存於 pgvector
+- 資料庫：PostgreSQL + pgvector extension
+- 圖片儲存：MinIO（S3-compatible object storage）
+- 驗證：純 Python，無外部框架依賴
+
+### 關鍵技術決策
+
+#### 放棄以 Embedding 為主要 RAG 路徑
+
+**決策：** 不使用 embedding 做主要查詢，改為評估直接 SQL lookup + LLM 的方案。
+
+**原因：**
+- Datasheet 的欄位高度結構化（symbol、parameter、condition、value 是已知欄位）
+- 使用者查詢通常是精確需求，例如「VGS=4.5V 時的 RDS(ON) max 值」
+- `all-MiniLM-L6-v2` 為英文模型，中文查詢語意對齊效果差（實測確認）
+- Semantic search 在已知欄位的精確查詢上，準確度不如 WHERE 條件過濾
+
+**結論：** Embedding 在跨文件探索（「哪個零件的熱阻最低」）仍有價值，但對單一 datasheet 的精確查詢，structured SQL 更可靠。
+
+#### Skill 驅動的 Parser 開發流程
+
+在 PDF 解析階段，建立了一系列輔助 skill（`ppg-explore` → `ppg-propose` → `ppg-apply`）來系統化地分析 PDF 結構、產出欄位規格、再落成 parser 實作。這個流程有效縮短了從 PDF 結構探索到可執行 parser 的週期。
+
+### 代碼評估結果（外部評審）
+
+**總體評分：7.5 / 10**
+
+| 面向 | 評分 |
+| --- | --- |
+| 架構設計 | 9/10 |
+| 代碼品質 | 8/10 |
+| 驗證系統 | 9/10 |
+| 運維可靠性 | 5/10（修正前）→ 7/10（修正後） |
+| 搜尋品質 | 6/10 |
+
+**已修正的問題（2026-05）：**
+
+1. `validate_parsed()` 的回傳值原本被丟棄，現在有錯誤時會中止 import，低信心時印出警告
+2. Validation 原本在 MinIO 上傳之後才執行，造成圖片孤立風險；現在改為在任何 I/O 之前執行
+3. 原本開 3 條獨立 DB 連線；duplicate check 與 upsert_parts 合併為單一連線，減少連線開銷
+
+**尚未修正的已知問題（留待後續）：**
+
+- `query.py`：每次查詢建立新連線，未來包成 API 時需改用連線池
+- `query.py`：每張表各取 top_k 再合併，可能遺漏更好的結果（建議改用 UNION ALL）
+- `query.py`：缺少 `min_score` 參數，低語意相似度的結果也會被回傳
+- `db/inserter.py:59`：`__main__` 區塊有硬編碼的機器路徑 `E:\tmp\datasheet`
+
+### 學到的核心教訓
+
+1. **Parser 品質決定一切**：Embedding、RAG、LLM 的效果全部建立在 parsing 品質上。anchor 對齊一個字元的差異就可能導致整張表格解析失敗。
+
+2. **先評估再實作**：在花時間建 embedding pipeline 之後才發現 structured lookup 更適合這個需求。下次應先用 5 行 SQL 驗證查詢模式，再決定是否需要 semantic search。
+
+3. **驗證層要有決策力**：驗證如果不影響下游行為，等於沒有驗證。`validate_parsed()` 回傳 `ValidationResult` 的設計本身是對的，但必須在呼叫端使用這個結果。
+
+4. **連線管理在腳本階段容易被忽略**：一次性腳本開多條連線不會造成明顯問題，但 API 化之後立刻變成效能瓶頸。養成從腳本開始就注意連線生命週期的習慣。

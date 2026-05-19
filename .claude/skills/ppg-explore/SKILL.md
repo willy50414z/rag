@@ -32,15 +32,17 @@ Text PDF 三段式流程的第一段：
 
 只問影響後續 spec 設計的問題，不問開放式問題。
 
-必問：
+必問（只問業務層級問題，技術決策留到 Step 5 根據實際 PDF 內容再確認）：
 
-1. **目標**：RAG / DB 入庫 / 兩者都要？
+1. **目標**：RAG 查詢 / DB 結構化入庫 / 兩者都要？
 2. **文件家族**：這是單份文件，還是同系列多份（例如同一廠商不同型號）？預計幾份？
 3. **查詢類型**：使用者典型會問什麼問題？（例如：「這顆料在 Tj=125°C 的 RDS(ON) 最大值是多少？」）
-4. **跨文件比較**：需不需要跨文件比較同一欄位？（影響是否需要 part_id 作為 join key）
-5. **Condition 模糊搜尋**：查詢條件需不需要模糊比對？（影響 condition 是否要拆解成結構化 key-value）
 
 根據回答調整後續分析重點。若是多份同系列文件，Step 3C（跨文件穩定性）要特別仔細。
+
+以下問題移到 Step 5，在分析完 PDF 實際結構後再根據證據提出建議：
+- 跨文件比較需求（影響 part_id join key 設計）
+- Condition 正規化策略（保留原始字串 vs. 拆解為結構化 key-value）
 
 ---
 
@@ -175,7 +177,8 @@ Columns:
 
 - Row key 候選是否正確？（最重要）
 - Nullable 欄位清單是否正確？
-- Condition 是否需要拆解成 key-value？
+- 跨文件比較：是否需要 part_id 作為 join key？（基於 Step 3C 的分析結果提出建議）
+- Condition 正規化策略：保留原始字串、拆解為 key-value、還是雙欄並存？（基於實際 condition 欄位內容提出建議）
 - 值類型有非數字時的處理策略？
 - 跨文件時哪些欄位是必定存在的？
 - 欄位缺失時是 `null`、`error`、還是 `needs_review`？
@@ -197,9 +200,67 @@ Columns:
 
 ## 完成提示
 
-完成 explore 後說明：
+完成 explore 後，先寫入決策 checkpoint，再提示 user 執行 propose。
 
-> 已完成 PDF exploration。Row key、DB schema 草案、及 RAG 設計已確認。請執行 `/ppg:propose` 產生 `pdf_field_spec.md`，這是唯一可人工修改的規格檔。
+### Step 6.5：寫入 explore_decisions.md
+
+在 `pdf-parser-generator/{pdf檔名（不含副檔名）}/explore_decisions.md` 寫入以下結構（中文）：
+
+```markdown
+# Explore Decisions: {pdf_filename}
+
+探索日期：{YYYY-MM-DD}
+來源檔案：{pdf路徑}
+
+## Step 0 確認
+
+- 目標用途：{RAG / DB / 兩者}
+- 文件家族：{單份 / N 份同系列}
+- 查詢類型範例：{e.g. 這顆料在 Tj=125°C 的 RDS(ON) 最大值是多少？}
+
+## 每張 Table 的 Row Key
+
+| Table | Row Key 欄位組合 | 理由 |
+|---|---|---|
+| electrical_characteristics | (part_id, symbol, condition) | 同一 symbol 在不同 condition 下是不同列 |
+| max_ratings | (part_id, symbol) | 無 condition 欄 |
+
+## DB Schema 草案
+
+（逐字貼上 Step 4 產出的 schema 文字）
+
+## Semantic Anchors
+
+| Table | expected_headers | 搜尋頁範圍 |
+|---|---|---|
+| electrical_characteristics | ["Symbol", "Parameter", "Min", "Typ", "Max", "Unit"] | 1-3 |
+| max_ratings | ["Symbol", "Rating", "Value", "Unit"] | 1 |
+
+## 跨文件穩定性
+
+（單份文件填「不適用」；多份同系列填 Step 3C 結論）
+
+## RAG 設計
+
+- 進向量庫：{欄位清單}
+- Structured query：{欄位清單}
+- Condition 正規化策略：{保留原始 / 拆解 KV / 雙欄}
+- 跨文件比較需求：{有 / 無}
+
+## Chunking 注意事項
+
+（貼 Step 6 產出的 chunking 前置考量）
+
+## 未解決項目
+
+（若 Step 5 有未確認項目，列於此；若無則填「無」）
+```
+
+這份檔案是 `/ppg:propose` 的 fallback 輸入，也可由 user 在 propose 之前手動修改。
+
+完成寫入後說明：
+
+> 已完成 PDF exploration，決策已存入 `explore_decisions.md`。Row key、DB schema 草案、及 RAG 設計已確認。請執行 `/ppg:propose` 產生 `pdf_field_spec.md`，這是唯一可人工修改的規格檔。
 
 ---
 
@@ -217,8 +278,7 @@ Columns:
 
 ## References
 
-- [text-layout-handling.md](./references/text-layout-handling.md)：閱讀順序、換行、多欄、header/footer 判斷細則
-- [table-extraction-guidelines.md](./references/table-extraction-guidelines.md)：table extraction 判斷與輸出細則
-- [review-template.md](./references/review-template.md)：human review 結構參考
-- [field-policy-template.md](./references/field-policy-template.md)：欄位政策模板
+- [text-layout-handling.md](./references/text-layout-handling.md)：閱讀順序、多欄、header/footer 判斷細則
+- [table-extraction-guidelines.md](./references/table-extraction-guidelines.md)：table 常見失敗模式與 parser 對應設計
+- [field-policy-template.md](./references/field-policy-template.md)：欄位政策模板（explore Step 5 使用）
 - [mosfet-domain.md](./references/mosfet-domain.md)：MOSFET datasheet 領域知識

@@ -5,6 +5,7 @@ Datasheet PDF → PostgreSQL import pipeline.
 Layer composition:
     parser (datasheet_parser/<vendor>_parser.py)  → records + chart images
     datasheet_parser.normalizer (normalize_parsed) → symbol/package/channel normalization
+    db.validator   (validate_parsed)               → abort on errors before any I/O
     db.text_representations (to_embed_text)        → per-record text
     db.embeddings  (embed, EmbeddingsBundle)       → vector bundle
     db.minio_client                               → chart upload
@@ -12,10 +13,15 @@ Layer composition:
 
 `import_pdf(pdf_path, parser)` is the only public entry point.
 
-Upsert flow:
-  1. upsert_parts → RETURNING id  (parts table, includes package lookup)
-  2. inject numeric part_id into all child records
-  3. upsert_all (child tables only, single transaction)
+Execution order:
+  1. Parse + normalize
+  2. Validate — abort on errors before touching MinIO or the DB
+  3. DB: check duplicate + upsert parts → RETURNING id  (single connection)
+  4. Inject numeric part_id into all child records
+  5. Extract chart images
+  6. Upload charts to MinIO
+  7. Generate embeddings
+  8. DB: upsert child tables in one transaction
 
 NOTE: MinIO orphan cleanup (chart uploaded then DB write fails) is intentionally
 out of scope for this module.
@@ -100,18 +106,31 @@ def import_pdf(pdf_path: Path, parser) -> None:
     print(f"  charts     : {len(tables['typical_charts'])} rows")
     print(f"  footnotes  : {len(parsed['footnotes'])} entries")
 
-    # -- Skip if already imported
+    # -- Validate before any I/O (MinIO / DB writes)
+    # Hard errors abort the import; low confidence emits a warning and continues.
+    print("Validating parsed data ...")
+    vresult = validate_parsed(parsed)
+    if vresult.errors:
+        raise ValueError(
+            f"Validation failed for '{pdf_path.name}' — "
+            f"{len(vresult.errors)} error(s). Import aborted.\n"
+            + vresult.summary()
+        )
+    if vresult.review_required:
+        print(f"  WARNING: confidence={vresult.confidence:.2f} — low confidence, "
+              f"proceeding with {len(vresult.warnings)} warning(s).")
+        for w in vresult.warnings:
+            print(f"    {w}")
+    else:
+        print(f"  Validation OK (confidence={vresult.confidence:.2f}, "
+              f"warnings={len(vresult.warnings)})")
+
+    # -- Step 1: duplicate check + upsert parts (single connection)
     conn = psycopg2.connect(db_url)
     try:
         if _part_exists(conn, part_number, topology, polarity):
             print(f"  '{part_number} {topology} {polarity}' already exists — skipping.")
             return
-    finally:
-        conn.close()
-
-    # -- Step 1: upsert parts, get numeric id
-    conn = psycopg2.connect(db_url)
-    try:
         with conn:
             with conn.cursor() as cur:
                 numeric_part_id = upsert_parts(cur, parts)
@@ -139,18 +158,15 @@ def import_pdf(pdf_path: Path, parser) -> None:
     print("Generating embeddings ...")
     footnotes_dict = parsed["footnotes"]
     embeddings = EmbeddingsBundle(
-        max_ratings=embed([to_embed_text(r, "max_ratings")               for r in tables["max_ratings"]]),
-        thermal    =embed([to_embed_text(r, "thermal_characteristics")   for r in tables["thermal_characteristics"]]),
+        max_ratings=embed([to_embed_text(r, "max_ratings")                for r in tables["max_ratings"]]),
+        thermal    =embed([to_embed_text(r, "thermal_characteristics")    for r in tables["thermal_characteristics"]]),
         electrical =embed([to_embed_text(r, "electrical_characteristics") for r in tables["electrical_characteristics"]]),
-        charts     =embed([to_embed_text(r, "typical_charts")            for r in tables["typical_charts"]]),
+        charts     =embed([to_embed_text(r, "typical_charts")             for r in tables["typical_charts"]]),
         footnotes  =embed([to_embed_text({"marker": m, "text": t}, "footnotes") for m, t in footnotes_dict.items()]),
     )
     total = sum([len(embeddings.max_ratings), len(embeddings.thermal), len(embeddings.electrical),
                  len(embeddings.charts), len(embeddings.footnotes)])
     print(f"  Generated {total} embedding(s)")
-
-    # -- Validate
-    validate_parsed(parsed)
 
     # -- Step 2: upsert child tables (single transaction)
     print("Upserting to PostgreSQL ...")

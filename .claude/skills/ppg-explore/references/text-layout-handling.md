@@ -1,59 +1,44 @@
 # Text Layout Handling
 
-Use this reference when a `digital-text` PDF has text that is technically extractable but structurally messy.
-
-The goal is not to perfectly reconstruct author intent. The goal is to produce a stable `normalized.json` that is easier to review, chunk, and trace back to source blocks.
+Use this reference during ppg-explore Step 1-2 when a text PDF has extractable text but the layout is structurally messy. The goal is to understand layout risks before committing to a parser design — not to produce a normalized intermediate file.
 
 ## What this reference covers
 
-- reading order repair
-- line merge / paragraph reconstruction
-- multi-column contamination checks
+- reading order repair signals
+- line merge / paragraph reconstruction heuristics
+- multi-column contamination detection
 - header/footer detection
 - section boundary hints
 
 ## Core rule
 
-Prefer conservative repair over aggressive rewriting.
+Prefer conservative observation over aggressive repair. When two interpretations are plausible, report the ambiguity in the explore conversation rather than silently picking one.
 
-If two interpretations are plausible:
+---
 
-- preserve the one with better traceability
-- keep ambiguity visible
-- avoid inventing semantic labels too early
+## 1. Reading order issues
 
-## 1. Reading order repair
-
-Typical symptoms:
+Typical symptoms in text PDF extraction:
 
 - extracted text jumps between columns
 - a sentence is split by unrelated text
 - labels and values appear far apart in output order
 - footer text appears inside paragraph flow
 
-Preferred repair order:
+When these appear during explore, note them — they affect whether a table anchor can reliably locate its target, and whether forward-fill logic will work across rows.
 
-1. Use page-local coordinates before trusting raw extraction order
-2. Group nearby lines into blocks before merging into paragraphs
-3. Reconstruct reading order within a column before combining columns
-4. Keep uncertain blocks flagged instead of silently forcing them into one order
+Useful heuristics for diagnosis:
 
-Useful heuristics:
-
-- top-to-bottom is usually safer than raw object order
-- within the same line band, left-to-right is usually safer for text PDF
+- top-to-bottom ordering is usually safer than raw object order
+- within the same line band, left-to-right is usually safer
 - large horizontal gaps often indicate separate columns or label/value separation
 - repeated y-position patterns across pages often indicate headers or footers
 
 ## 2. Line merge and paragraph reconstruction
 
-Goal:
-
-- merge obvious visual line breaks
-- avoid merging unrelated lines just because they are vertically close
+These heuristics help decide whether adjacent text lines belong together (relevant when table cells contain wrapped text that could confuse row boundary detection):
 
 Good merge signals:
-
 - similar left alignment
 - small vertical gap
 - same column region
@@ -61,130 +46,51 @@ Good merge signals:
 - next line starts like a continuation, not a new label or heading
 
 Do not merge when:
-
 - the next line is in another column
 - the next line is clearly a table row
 - the next line starts a new heading or label
 - font/style shift strongly suggests a new section
 
-Safe normalization behaviors:
+## 3. Multi-column detection
 
-- collapse intra-paragraph line breaks into spaces
-- keep paragraph boundaries explicit
-- preserve source block references after merge
-
-## 3. Multi-column handling
-
-Multi-column text is one of the biggest ways text PDF extraction becomes misleading.
-
-Typical failure mode:
-
-- left column line 1
-- right column line 1
-- left column line 2
-- right column line 2
-
-This output may look readable at a glance but is structurally wrong.
+Multi-column text is a major risk for parser correctness — it can make a table appear where none exists, or split a real table across unrelated regions.
 
 Detection hints:
-
 - persistent two-band or three-band x-coordinate clusters
 - paragraphs with abrupt topic shifts mid-sentence
 - similar vertical positions repeated with far-separated x positions
 
-Preferred handling:
-
-1. cluster text blocks by x-region
-2. reconstruct each column independently
-3. only merge columns at the section level if order is clear
-
-If the order between columns is still uncertain:
-
-- keep them as separate sections
-- mark `uncertain: true`
-- mention the risk in review output
+When detected, flag it in the explore analysis. The parser may need page-region filtering before running table extraction.
 
 ## 4. Header and footer detection
 
-Headers and footers are not harmless noise. If left in body text, they degrade chunking and evidence quality.
+Repeated headers/footers are not harmless noise — if left in body text, they can be misidentified as table rows or section headers.
 
 Strong header/footer signals:
-
 - repeated text across many pages
 - repeated page number patterns
 - consistently near top or bottom margin
 - visually separated from body text
 
-Recommended behavior:
+During explore, note their content and position. During apply, the parser should filter them before table extraction.
 
-- mark them explicitly as `header` or `footer`
-- exclude them from paragraph reconstruction
-- preserve them in normalized output if they may matter for traceability
+## 5. Section boundary hints
 
-Do not silently delete them from all artifacts.
+These signals help the parser decide where one table section ends and another begins:
 
-Preferred pattern:
+- bold or larger-font text spanning full page width
+- rows with significantly fewer columns than the table
+- blank rows followed by a standalone label row
+- text matching known section header patterns (e.g. "Static Electrical Characteristics")
 
-- keep in raw
-- mark in normalized
-- exclude from candidate field ranking unless the user confirms relevance
+Record suspected section boundaries during explore so they can inform `section_split.patterns` in the spec.
 
-## 5. Label-value candidates
+## 6. Red flags
 
-For text PDF, some fields are expressed through spatial pairing rather than sentence structure.
-
-Examples:
-
-- `Invoice Number` on the left, value on the right
-- `Date` above, value below
-
-When detecting label-value candidates:
-
-- preserve both text and spatial relation
-- do not immediately commit to a final field meaning
-- keep source blocks and page number
-
-Useful hints:
-
-- short textual label near a structured-looking value
-- repeated label style across pages or similar documents
-- same visual row or tight vertical adjacency
-
-## 6. Section typing
-
-Suggested `section_type` values:
-
-- `header`
-- `footer`
-- `paragraph`
-- `section`
-- `table`
-- `label_value_candidate`
-- `uncertain`
-
-Choose the narrowest type you can justify.
-
-If unsure between two types, use `uncertain` and describe the ambiguity.
-
-## 7. Normalization output expectations
-
-After layout handling, `normalized.json` should make these questions easier to answer:
-
-- What is body text vs repeated noise?
-- Where do paragraphs start and end?
-- Are there multiple columns?
-- Which blocks support a candidate field?
-- Which sections are unsafe to chunk blindly?
-
-Good normalization is not the same as pretty text. It is a traceable, reviewable intermediate representation.
-
-## 8. Red flags
-
-Stop and report instead of over-normalizing when:
-
+Stop and report during explore when:
 - column boundaries remain unstable
-- merged paragraphs depend on guesswork
 - body text and tables are interleaved unpredictably
 - header/footer detection would require document-specific overfitting
+- the same region alternates between paragraph-like and table-like output
 
-When blocked, keep ambiguity visible and call it out in review.
+When blocked, keep ambiguity visible and call it out in the explore conversation — do not force a parser design on an unstable foundation.

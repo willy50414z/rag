@@ -17,6 +17,10 @@ description: 讀取 /ppg:explore 在 conversation 中已確認的決策（row ke
 
 ## 前置條件檢查
 
+依序嘗試以下兩個來源取得 explore 決策：
+
+**來源 1（優先）：當前 conversation 中的 explore 決策**
+
 確認 conversation 中已有來自 `/ppg:explore` 的以下決策：
 
 - 目標（RAG / DB / 兩者）與文件家族規模
@@ -28,18 +32,28 @@ description: 讀取 /ppg:explore 在 conversation 中已確認的決策（row ke
 - RAG 設計（哪些欄位進向量庫、condition 是否正規化）
 - Chunking 前置考量
 
-若缺少其中任一項：
+**來源 2（fallback）：`explore_decisions.md`**
+
+若 conversation 中缺少上述決策（例如跨 session 執行），嘗試讀取：
+
+```text
+pdf-parser-generator/{pdf檔名}/explore_decisions.md
+```
+
+從此檔萃取相同清單。若此檔存在且包含所有必要決策，繼續執行 propose；若有未解決項目（`## 未解決項目` 非「無」），先回報並要求 user 確認再繼續。
+
+**兩個來源都沒有：**
 
 > 找不到完整的 exploration 決策。請先執行 `/ppg:explore <pdf路徑>`，確認 row key、DB schema 與 anchor 設計後再執行 propose。
 
-不從 PDF 重新探索；只把 conversation 中的決策正式化。
+不從 PDF 重新探索；只把已確認的決策正式化。
 
 ---
 
 ## Artifact 責任分工
 
 - `pdf_field_spec.md`：human-reviewed semantic contract，唯一可由 user 直接編輯
-- `parser.py` / `parser_spec.json`：由 `/ppg:apply` 產生，不手改
+- `parser.py` / `test_parser.py` / `output.json`：由 `/ppg:apply` 產生，不手改
 - 不產生 `normalized.json` 或 `raw_extraction.json`（已棄用）
 
 ---
