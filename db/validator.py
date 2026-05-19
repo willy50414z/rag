@@ -23,6 +23,8 @@ from typing import Any
 
 REVIEW_THRESHOLD = 0.70
 REQUIRED_SECTIONS = {"Static", "Dynamic", "Switching", "DiodeCharacteristics"}
+VALID_TOPOLOGIES  = {"Single", "Dual", "Comp", "Comp2", "Asymmetric"}
+VALID_POLARITIES  = {"N", "P"}
 
 # PUA block U+E000 to U+F8FF：用 chr() 構建，避免 source file 的 Unicode 編碼問題
 # parser._PUA_MAP 只映射 2 個字符，其餘 PUA 字符會直接穿透進欄位值
@@ -141,20 +143,33 @@ def _validate_parts(rows: list[dict], errors: list, warnings: list) -> int:
     score = 0
     for i, r in enumerate(rows):
         ok = True
-        ok &= _require_str(r.get("part_id"), "parts", i, "part_id", errors)
-        ok &= _require_str(r.get("package"), "parts", i, "package", errors)
+        ok &= _require_str(r.get("part_number"), "parts", i, "part_number", errors)
+        ok &= _require_str(r.get("package"),     "parts", i, "package",     errors)
         ok &= _require_int_or_str_int(r.get("source_page"), "parts", i,
                                       "source_page", errors)
+
+        topology = r.get("topology", "")
+        polarity = r.get("polarity", "")
+        if topology not in VALID_TOPOLOGIES:
+            errors.append(ValidationIssue(1, "parts", i, "topology",
+                                          f"topology {topology!r} 不合法，"
+                                          f"已知：{sorted(VALID_TOPOLOGIES)}"))
+            ok = False
+        if polarity not in VALID_POLARITIES:
+            errors.append(ValidationIssue(1, "parts", i, "polarity",
+                                          f"polarity {polarity!r} 不合法，必須為 'N' 或 'P'"))
+            ok = False
+
         if r.get("marking") is not None and not isinstance(r["marking"], str):
             warnings.append(ValidationIssue(1, "parts", i, "marking",
                                             "marking 應為字串或 None"))
-        pid = r.get("part_id", "")
-        if pid == "UNKNOWN":
-            warnings.append(ValidationIssue(1, "parts", i, "part_id",
-                                            "part_id 為 'UNKNOWN'：parser 未能從頁面標題抽取，"
+        pnum = r.get("part_number", "")
+        if pnum == "UNKNOWN":
+            warnings.append(ValidationIssue(1, "parts", i, "part_number",
+                                            "part_number 為 'UNKNOWN'：parser 未能從頁面標題抽取，"
                                             "請確認 PDF 第一頁格式"))
-        if isinstance(pid, str):
-            _check_anomalous_chars(pid, "parts", i, "part_id", warnings)
+        if isinstance(pnum, str):
+            _check_anomalous_chars(pnum, "parts", i, "part_number", warnings)
         score += 1 if ok else 0
     return score
 
@@ -336,18 +351,24 @@ def _cross_validate_electrical(rows: list[dict], errors: list,
 
 def _cross_validate_parts_consistency(tables: dict, errors: list,
                                       warnings: list) -> None:
-    """各子表的 part_id 應與 parts[0].part_id 一致。"""
+    """各子表的 part_id 應已被 pipeline 替換為相同的 numeric id。
+
+    此驗證在 import_pipeline 注入 numeric_part_id 之前執行（validate_parsed 在 embed 之後、
+    upsert 之前呼叫），所以子表此時仍帶 TEXT part_id 或尚未注入的值。
+    僅在 parts 表有資料時做基本一致性檢查：確認子表的 part_id 都是相同的值。
+    """
     parts = tables.get("parts", [])
     if not parts:
         return
-    expected_id = parts[0].get("part_id", "")
+    expected_id = parts[0].get("part_id") or parts[0].get("part_number", "")
     for tname in ("max_ratings", "thermal_characteristics",
                   "electrical_characteristics", "typical_charts"):
         for i, r in enumerate(tables.get(tname, [])):
-            if r.get("part_id") != expected_id:
+            rid = r.get("part_id")
+            if rid is not None and isinstance(rid, str) and rid != expected_id:
                 errors.append(ValidationIssue(2, tname, i, "part_id",
-                                              f"part_id={r.get('part_id')!r} "
-                                              f"與 parts[0].part_id={expected_id!r} 不符"))
+                                              f"part_id={rid!r} "
+                                              f"與 parts[0] 識別符 {expected_id!r} 不符"))
 
 
 def _check_condition_consistency(rows: list[dict], table_name: str,

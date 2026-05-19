@@ -4,7 +4,7 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 import pdfplumber
 from datasheet_parser.vdsemi_parser import parse_max_ratings, parse_electrical
-from datasheet_parser.normalizer import normalize_parsed, normalize_symbol
+from datasheet_parser.normalizer import normalize_parsed, normalize_symbol, normalize_channel, normalize_package, PACKAGE_WHITELIST
 
 PASS = "OK"
 FAIL = "FAIL"
@@ -74,4 +74,47 @@ else:
     print("  electrical symbols: no changes (as expected for this PDF)")
 
 print()
-print("All tests passed." if all_ok else "Some normalize_symbol tests FAILED.")
+print("All normalize_symbol tests passed." if all_ok else "Some normalize_symbol tests FAILED.")
+
+# ---- unit: normalize_channel ---
+print()
+print("=== normalize_channel unit tests ===")
+channel_cases = [
+    ("N-Channel Advanced Power MOSFET", ("Single", "N")),
+    ("P-Channel Enhancement Mode",      ("Single", "P")),
+    ("100V/120A N-Channel",             ("Single", "N")),
+    ("Dual N-Channel MOSFET",           ("Dual",   "N")),
+    ("Dual P-Channel MOSFET",           ("Dual",   "P")),
+    ("Comp N-Channel",                  ("Comp",   "N")),
+    ("Comp2 P-Channel",                 ("Comp2",  "P")),
+    ("Asymmetric N-Channel",            ("Asymmetric", "N")),
+    ("Complementary MOSFET N-Channel",  ("Comp",   "N")),
+    ("N",                               ("Single", "N")),
+    ("P",                               ("Single", "P")),
+]
+ch_ok = True
+for raw, expected in channel_cases:
+    got = normalize_channel(raw)
+    ok  = got == expected
+    ch_ok = ch_ok and ok
+    print(f"  {raw!r:45s} -> {str(got):20s}  {'OK' if ok else 'FAIL expected=' + str(expected)}")
+
+# ---- unit: normalize_package ---
+print()
+print("=== normalize_package unit tests ===")
+for pkg in sorted(PACKAGE_WHITELIST):
+    result = normalize_package(pkg)
+    print(f"  {pkg!r:20s} -> OK")
+
+try:
+    normalize_package("INVALID-PKG")
+    print("  FAIL: should have raised ValueError for INVALID-PKG")
+    ch_ok = False
+except ValueError as e:
+    print(f"  INVALID-PKG correctly raised ValueError: {e}")
+
+print()
+if all_ok and ch_ok:
+    print("All tests passed.")
+else:
+    print("Some tests FAILED.")

@@ -47,6 +47,8 @@ _TABLES: dict[str, dict] = {
         "columns": ("part_id", "marker", "text"),
     },
 }
+# NOTE: part_id in all child tables is now INTEGER (FK → parts.id).
+# IS NOT DISTINCT FROM in the UPDATE WHERE clause handles integer comparison correctly.
 
 
 def _reembed_table(conn, table: str, batch_size: int, dry_run: bool) -> int:

@@ -302,7 +302,7 @@ def extract_footnotes_dynamic(pdf) -> dict[str, str]:
 
 
 # ---------------------------------------------------------------------------
-# Part ID extraction
+# Part ID / channel extraction
 # ---------------------------------------------------------------------------
 
 def _extract_part_id(pdf) -> str | None:
@@ -311,6 +311,34 @@ def _extract_part_id(pdf) -> str | None:
     text = page.extract_text() or ""
     m = re.search(r"\b(VS\w+(?:-G)?)\b", text)
     return m.group(1) if m else None
+
+
+_CHANNEL_HEADER_RE = re.compile(
+    r"(?:Comp2|Complementary|Asymmetric|Dual|Single|Comp)?\s*"
+    r"[NP][- ]?(?:Channel|CH)",
+    re.IGNORECASE,
+)
+
+
+def _extract_channel_raw(pdf) -> str | None:
+    """Scan all page headers for a channel type string (e.g. 'N-Channel')."""
+    for page in pdf.pages:
+        text = page.extract_text() or ""
+        m = _CHANNEL_HEADER_RE.search(text)
+        if m:
+            return m.group(0).strip()
+    return None
+
+
+def _channel_from_vbrdss(max_ratings: list[dict]) -> str | None:
+    """Fallback: infer channel polarity from V(BR)DSS / VDSS sign (>0 → N, <0 → P)."""
+    for r in max_ratings:
+        sym = r.get("symbol", "").upper().replace(" ", "").replace("(", "").replace(")", "")
+        if sym in ("VBRDSS", "VDSS", "BVDSS"):
+            val = r.get("value_num")
+            if val is not None:
+                return "N-Channel" if float(val) > 0 else "P-Channel"
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -333,7 +361,7 @@ def parse_parts(pdf, part_id: str) -> list[dict]:
         )
         if m:
             records.append({
-                "part_id": m.group(1), "package": m.group(2),
+                "part_number": m.group(1), "package": m.group(2),
                 "marking": m.group(3), "packing": m.group(4),
                 "source_page": 1, "table_ref": "P1-T1",
             })
@@ -344,12 +372,12 @@ def parse_parts(pdf, part_id: str) -> list[dict]:
         if not any(cells):
             continue
         records.append({
-            "part_id":    cells[0] or part_id,
-            "package":    cells[1] if len(cells) > 1 else None,
-            "marking":    cells[2] if len(cells) > 2 else None,
-            "packing":    cells[3] if len(cells) > 3 else None,
+            "part_number": cells[0] or part_id,
+            "package":     cells[1] if len(cells) > 1 else None,
+            "marking":     cells[2] if len(cells) > 2 else None,
+            "packing":     cells[3] if len(cells) > 3 else None,
             "source_page": pg,
-            "table_ref":  "P1-T1",
+            "table_ref":   "P1-T1",
         })
     return records
 
@@ -912,11 +940,25 @@ def parse(pdf_path: str = PDF_PATH) -> dict:
             warnings_list.append("Could not extract part_id from page 1 title")
             part_id = "UNKNOWN"
 
-        footnotes = extract_footnotes_dynamic(pdf)
-        parts     = parse_parts(pdf, part_id)
-        max_rat   = parse_max_ratings(pdf, part_id)
-        thermal   = parse_thermal(pdf, part_id)
-        electrical= parse_electrical(pdf, part_id)
+        raw_channel = _extract_channel_raw(pdf)
+        footnotes   = extract_footnotes_dynamic(pdf)
+        parts       = parse_parts(pdf, part_id)
+        max_rat     = parse_max_ratings(pdf, part_id)
+        thermal     = parse_thermal(pdf, part_id)
+        electrical  = parse_electrical(pdf, part_id)
+
+    # Channel fallback: use V(BR)DSS sign if header gave nothing
+    if raw_channel is None:
+        raw_channel = _channel_from_vbrdss(max_rat)
+    if raw_channel is None:
+        warnings_list.append(
+            "Could not detect channel from header or V(BR)DSS — "
+            "set raw_channel manually before import"
+        )
+
+    # Inject raw_channel into parts records so normalizer can split topology/polarity
+    for row in parts:
+        row["raw_channel"] = raw_channel
 
     charts_full = parse_typical_charts(pdf_path, part_id)
     # Strip image_bytes — not JSON-serialisable; callers needing bytes use

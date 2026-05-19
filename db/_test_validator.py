@@ -11,8 +11,8 @@ assert _PUA_RE.search(chr(0xF8FF)), "PUA end not matched"
 assert not _PUA_RE.search("hello"), "false positive"
 print("PUA regex OK\n")
 
-BASE_PART = {"part_id": "VSP007N06MS-G", "package": "TO-252",
-             "marking": "VS7", "source_page": 1, "table_ref": "T1"}
+BASE_PART = {"part_number": "VSP007N06MS-G", "topology": "Single", "polarity": "N",
+             "package": "TO-252", "marking": "VS7", "source_page": 1, "table_ref": "T1"}
 BASE_ELEC = {
     "part_id": "VSP007N06MS-G", "symbol": "RDS", "parameter": "On-Resistance",
     "section": "Static", "condition_raw": "VGS=10V",

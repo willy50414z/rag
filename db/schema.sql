@@ -14,23 +14,63 @@
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- -----------------------------------------------------------------------
+-- Lookup types
+-- -----------------------------------------------------------------------
+DO $$ BEGIN
+    CREATE TYPE channel_topology AS ENUM ('Single','Dual','Comp','Comp2','Asymmetric');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+DO $$ BEGIN
+    CREATE TYPE channel_polarity AS ENUM ('N','P');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+-- -----------------------------------------------------------------------
+-- package_types  (whitelist + future metadata)
+-- -----------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS package_types (
+    id        SERIAL  PRIMARY KEY,
+    value     TEXT    NOT NULL UNIQUE,
+    pin_count INTEGER,
+    width_mm  REAL,
+    height_mm REAL
+);
+
+INSERT INTO package_types (value) VALUES
+    ('TO-252'),
+    ('TO-263'),
+    ('TO-263-6L'),
+    ('PDFN5*6'),
+    ('TO-220'),
+    ('TO-220F'),
+    ('TOLT'),
+    ('TOLL'),
+    ('TO-220AB'),
+    ('PDFN3*3')
+ON CONFLICT (value) DO NOTHING;
+
+-- -----------------------------------------------------------------------
 -- parts  (no embedding — structured lookup only)
 -- -----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS parts (
-    part_id     TEXT    NOT NULL,
-    package     TEXT    NOT NULL,
-    marking     TEXT    NOT NULL,
+    id          SERIAL           PRIMARY KEY,
+    part_number TEXT             NOT NULL,
+    topology    channel_topology NOT NULL,
+    polarity    channel_polarity NOT NULL,
+    package_id  INTEGER          NOT NULL REFERENCES package_types(id),
+    marking     TEXT             NOT NULL,
     packing     TEXT,
-    source_page INTEGER NOT NULL,
-    table_ref   TEXT    NOT NULL,
-    PRIMARY KEY (part_id)
+    source_page INTEGER          NOT NULL,
+    table_ref   TEXT             NOT NULL,
+    UNIQUE (part_number, topology, polarity)
 );
 
 -- -----------------------------------------------------------------------
 -- max_ratings
 -- -----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS max_ratings (
-    part_id              TEXT    NOT NULL,
+    part_id              INTEGER NOT NULL REFERENCES parts(id),
     symbol               TEXT    NOT NULL,
     parameter            TEXT    NOT NULL,
     condition_raw        TEXT,
@@ -54,7 +94,7 @@ CREATE INDEX IF NOT EXISTS max_ratings_part_id_idx ON max_ratings (part_id);
 -- thermal_characteristics
 -- -----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS thermal_characteristics (
-    part_id     TEXT    NOT NULL,
+    part_id     INTEGER NOT NULL REFERENCES parts(id),
     symbol      TEXT    NOT NULL,
     parameter   TEXT    NOT NULL,
     typ         REAL    NOT NULL,
@@ -71,7 +111,7 @@ CREATE INDEX IF NOT EXISTS thermal_part_id_idx ON thermal_characteristics (part_
 -- electrical_characteristics
 -- -----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS electrical_characteristics (
-    part_id              TEXT    NOT NULL,
+    part_id              INTEGER NOT NULL REFERENCES parts(id),
     symbol               TEXT    NOT NULL,
     parameter            TEXT    NOT NULL,
     section              TEXT    NOT NULL,
@@ -97,7 +137,7 @@ CREATE INDEX IF NOT EXISTS elec_symbol_idx  ON electrical_characteristics (symbo
 -- typical_charts
 -- -----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS typical_charts (
-    part_id     TEXT    NOT NULL,
+    part_id     INTEGER NOT NULL REFERENCES parts(id),
     caption     TEXT    NOT NULL,
     source_page INTEGER NOT NULL,
     minio_key   TEXT    NOT NULL,
@@ -112,9 +152,9 @@ CREATE INDEX IF NOT EXISTS charts_part_id_idx ON typical_charts (part_id);
 -- footnotes
 -- -----------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS footnotes (
-    part_id   TEXT NOT NULL,
-    marker    TEXT NOT NULL,
-    text      TEXT NOT NULL,
+    part_id   INTEGER NOT NULL REFERENCES parts(id),
+    marker    TEXT    NOT NULL,
+    text      TEXT    NOT NULL,
     embedding vector(384),
     PRIMARY KEY (part_id, marker)
 );
