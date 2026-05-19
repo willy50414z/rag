@@ -285,8 +285,21 @@ if __name__ == "__main__":
         #     {"question": "breakdown voltage", "polarity": "N", "top_k": 3},
         # ),
         (
-            "搜 N-channel 零件的替代料號",
-            {"question": "bvdss>=30 & VGS是+-20 & Id約等於40的料號", "polarity": "N", "top_k": 3},
+            "[中文] 高溫特性說明",
+            {"question": "VSP007N06MS-G的高溫特性說明",
+             "part_number": "VSP007N06MS-G", "top_k": 5},
+        ),
+        (
+            "[英文-精確] thermal characteristics junction to case",
+            {"question": "thermal characteristics junction to case resistance",
+             "part_number": "VSP007N06MS-G",
+             "tables": ["thermal_characteristics"], "top_k": 5},
+        ),
+        (
+            "[英文-跨表] high temperature drain current RDS(ON)",
+            {"question": "high temperature drain current RDS(ON) junction",
+             "part_number": "VSP007N06MS-G",
+             "tables": ["thermal_characteristics", "electrical_characteristics"], "top_k": 5},
         ),
     ]
 
