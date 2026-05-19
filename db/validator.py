@@ -481,7 +481,7 @@ def validate_parsed(parsed: dict) -> ValidationResult:
     # -- 空表警告（max_ratings / electrical 為核心表，空資料通常代表 parser 錨點失敗）
     for tname in ("max_ratings", "electrical_characteristics"):
         if not tables.get(tname):
-            warnings.append(ValidationIssue(1, tname, None, "(table)",
+            errors.append(ValidationIssue(1, tname, None, "(table)",
                                             f"{tname} 為空，可能是 parser 未找到對應表格錨點"))
 
     # ---- Layer 1

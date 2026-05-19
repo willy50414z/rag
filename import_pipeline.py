@@ -5,7 +5,8 @@ Datasheet PDF → PostgreSQL import pipeline.
 Layer composition:
     parser (datasheet_parser/<vendor>_parser.py)  → records + chart images
     datasheet_parser.normalizer (normalize_parsed) → cross-parser symbol/condition normalization
-    db.embeddings  (EmbeddingGenerator)           → vector bundle
+    db.text_representations (to_embed_text)        → per-record text
+    db.embeddings  (embed, EmbeddingsBundle)       → vector bundle
     db.minio_client                               → chart upload
     db.upserts     (upsert_all)                   → 6-table single-transaction write
 
@@ -25,9 +26,11 @@ import psycopg2
 from dotenv import load_dotenv
 
 from datasheet_parser.normalizer import normalize_parsed
-from db.embeddings import EmbeddingGenerator
+from db.embeddings import EmbeddingsBundle, embed
 from db.minio_client import build_minio_client, upload_charts
+from db.text_representations import to_embed_text
 from db.upserts import upsert_all
+from db.validator import validate_parsed
 
 _DB_ENV = Path(__file__).parent / "db" / ".env"
 
@@ -104,19 +107,21 @@ def import_pdf(pdf_path: Path, parser) -> None:
     upload_charts(minio_client, minio_bucket, charts_full)
 
     # -- Embeddings
-    print(f"Loading embedding model ...")
-    generator = EmbeddingGenerator()
-
     print("Generating embeddings ...")
-    embeddings = generator.encode_bundle(parsed)
-    total = (
-        len(embeddings.max_ratings)
-        + len(embeddings.thermal)
-        + len(embeddings.electrical)
-        + len(embeddings.charts)
-        + len(embeddings.footnotes)
+    footnotes_dict = parsed["footnotes"]
+    embeddings = EmbeddingsBundle(
+        max_ratings=embed([to_embed_text(r, "max_ratings")               for r in tables["max_ratings"]]),
+        thermal    =embed([to_embed_text(r, "thermal_characteristics")   for r in tables["thermal_characteristics"]]),
+        electrical =embed([to_embed_text(r, "electrical_characteristics") for r in tables["electrical_characteristics"]]),
+        charts     =embed([to_embed_text(r, "typical_charts")            for r in tables["typical_charts"]]),
+        footnotes  =embed([to_embed_text({"marker": m, "text": t}, "footnotes") for m, t in footnotes_dict.items()]),
     )
+    total = sum([len(embeddings.max_ratings), len(embeddings.thermal), len(embeddings.electrical),
+                 len(embeddings.charts), len(embeddings.footnotes)])
     print(f"  Generated {total} embedding(s)")
+
+    # validator
+    validate_parsed(parsed)
 
     # -- DB upserts (single transaction)
     print("Upserting to PostgreSQL ...")
